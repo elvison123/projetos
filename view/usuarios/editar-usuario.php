@@ -1,7 +1,13 @@
+<?php 
+session_start();
+if(!isset($_SESSION["nomeusuario"])){
+    header('Location: LoginUsuario.php');
+   
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +23,7 @@
 
     </head>
     <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="../home.php">Home</a></li>
+        <li role="presentation" class="active"><a href="../home/home-usuario.php">Home</a></li>
         <!-- <li role="presentation"><a href="#">Messages</a></li>-->
         <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                                     aria-expanded="false"> Clientes <span class="caret"></span>
@@ -49,6 +55,18 @@
                 
 
             </ul></li>
+            <ul class="nav navbar-nav navbar-right">
+            
+            <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><?php  if (isset($_SESSION['nomeusuario'])){echo "Olá, " . $_SESSION["nomeusuario"];}; ?><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"></a></li>
+                    <li><a href="#">Configurações do perfil</a></li>
+                    
+                    
+                </ul>
+            </li>
+            <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
+        </ul>
     </ul>
 
 

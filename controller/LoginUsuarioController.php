@@ -28,13 +28,13 @@ class LoginUsuarioController{
             $mensagem = "Login efetuado com sucesso!";
             session_start();
             $_SESSION["nomeusuario"] = isset($_GET["login"])?($_GET["login"]):false;
-            header('Location: ../view/home/home-usuario.php');
+            header('Location: ../view/home/login-sucesso.php?erro='.$mensagem);
             
            
             
             
         }else{//senha incorreta
-           $mensagem = "Usuario ou senha incorretos!"; 
+           $mensagem = "Usuário ou senha incorretos!"; 
            header('Location: ../view/home/LoginUsuario.php?erro='.$mensagem);
            
            

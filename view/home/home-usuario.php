@@ -5,7 +5,6 @@ if(!isset($_SESSION["nomeusuario"])){
    
 }
 
-
 ?>
 
 <!DOCTYPE html>

@@ -16,7 +16,7 @@
     <body>
         <div class="container">
             <?php if(isset($_GET['erro'])){?>
-        <div class="alert alert-info">
+        <div class="alert alert-danger">
                 <strong><?php echo $_GET['erro'];?></strong>
             </div>
             <?php };?>
