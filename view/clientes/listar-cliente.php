@@ -70,6 +70,15 @@ if(!isset($_SESSION["nomeusuario"])){
     </ul>
 
   <div class="container">
+      <?php if (isset($_GET['status'])) { ?>
+                <div class="alert alert-info">
+                    <center><?php echo $_GET['status']; ?></center>
+                </div>
+           
+
+        <?php }; ?> 
+         
+      
     <div class="row">
         <div class="col-xs-4">
             <h1 class="h1">Listar Clientes</h1>

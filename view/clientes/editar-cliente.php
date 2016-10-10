@@ -70,6 +70,10 @@ if(!isset($_SESSION["nomeusuario"])){
     </ul>
 
  <div class="container">
+    
+     
+     
+     
     <div class="row">
         <div class="col-xs-4">
             <h1 class="h1">Editar Clientes</h1>
