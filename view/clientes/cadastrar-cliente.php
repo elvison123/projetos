@@ -1,9 +1,9 @@
 <?php 
 session_start();
-if(!isset($_SESSION["nomeusuario"])){
-    header('Location: LoginUsuario.php');
-   
-}
+//if(!isset($_SESSION["nomeusuario"])){
+//    header('Location: LoginUsuario.php');
+//   
+//}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -52,6 +52,16 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li><a href="../usuarios/cadastrar-usuario.php">Cadastrar Usuários</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/UsuarioController.php?acao=listarusuarios"> Mostrar todos os Usuários cadastrados</a></li>
+                
+
+            </ul></li>
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                    aria-expanded="false"> Cadastros <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#"> Modulos </a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar funções dos modulos</a></li>
                 
 
             </ul></li>
