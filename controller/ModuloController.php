@@ -30,13 +30,13 @@ class ModuloController {
         }
     }
 
-        function listarModulos($parametro) {
+    function listarModulos($parametro) {
             try {
                 if ($parametro == "cadastrarfuncao") {
                     $modulobusca = $this->modulo->listarModulos();
                     session_start();
                     $_SESSION["modulo"] = $modulobusca;
-                    header("Location:../view/modulos/cadastar-funcao-modulo.php");
+                    header("Location: ../view/modulos/cadastar-funcao-modulo.php");
                 }else{
                     echo "paramentor nao informado em listarModulos";
                 }
