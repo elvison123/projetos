@@ -71,12 +71,16 @@ session_start();
     
     <div class="container">
         <h1>Cadastrar funções do modulo</h1>
-        <form action="" id="formcad" method="get">
+        <form action="../../controller/ModuloController.php" id="formcad" method="get">
+            <input type="hidden" value="cadastrarfuncao" name="acao">
             <div class="form-group row">
                 <label class="col-xs-2 col-form-label" for="modulo">Modulo</label>
                 <div class="col-xs-10">
                     <select name="modulo">
-                        <option value="<?php echo isset($_SESSION["modulo"])?$_SESSION["modulo"]:null;?>"><?php echo isset($_SESSION["modulo"])?$_SESSION["modulo"]:null;?></option>
+                         <?php session_start() ?>
+            <?php if (isset($_SESSION["nome"])){foreach ($_SESSION["nome"] as $modulos):?> 
+                                    <option value="<?php echo $modulos['nome']; ?>"><?php echo $modulos['nome']; ?></option>
+                               <?php endforeach;}?> 
                     </select>
                 </div>
             </div>
@@ -91,6 +95,9 @@ session_start();
                     <div class="col-xs-10">
                         <input type="text" name="codigo" class="form-control">
                     </div>
+            </div>
+            <div class="form-group col-xs-2">
+                <input class="btn btn-default" type="submit" value="Cadastrar">
             </div>
                     
             

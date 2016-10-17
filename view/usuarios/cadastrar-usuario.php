@@ -59,6 +59,17 @@ if(!isset($_SESSION["nomeusuario"])){
                 
 
             </ul></li>
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                    aria-expanded="false"> Cadastros <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="cadastrar-usuario.php">Modulos</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                
+
+            </ul></li>
+            
             <ul class="nav navbar-nav navbar-right">
             
             <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><?php  if (isset($_SESSION['nomeusuario'])){echo "Olá, " . $_SESSION["nomeusuario"];}; ?><b class="caret"></b></a>
