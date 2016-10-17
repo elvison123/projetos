@@ -42,24 +42,30 @@ class ClienteController {
         }
     }
 
-    public function cadastrar() {
-        try {
-            $this->cliente->setNome($_GET["nome"]);
-            $this->cliente->setEmail($_GET["email"]);
-            $this->cliente->setTelefone($_GET["telefone"]);
-            $this->cliente->setEmpresa($_GET["empresa"]);
-            $this->cliente->setCpf($_GET["cpf"]);
-            $this->cliente->setEndereco($_GET["endereco"]);
-            $this->cliente->setSenha($_GET["senha"]);
-            $this->cliente->cadastrarUsuario();
-            $mensagem = "O usuario<strong> " . $this->cliente->getNome() . " </strong>foi cadastrado";
-            header("Location: ../view/clientes/cadastrar-cliente.php?status=" . $mensagem);
+    public function cadastrar(){
+            try{
+		$this->cliente->setNome($_GET["nome"]);
+		$this->cliente->setEmail($_GET["email"]);
+		$this->cliente->setTelefone($_GET["telefone"]);
+		$this->cliente->setEmpresa($_GET["empresa"]);
+		$this->cliente->setCpf($_GET["cpf"]);
+		$this->cliente->setEndereco($_GET["endereco"]);
+		$this->cliente->setLogin($_GET["login"]);
+                $this->cliente->setSenha($_GET["senha"]);
+                
+		$this->cliente->cadastrarUsuario();
+                $mensagem= "O usuario<strong> " .$this->cliente->getNome()." </strong>foi cadastrado";
+                header("Location: ../view/clientes/cadastrar-cliente.php?status=".$mensagem);
 //                include '../../view/clientes/cadastrar-cliente.php';
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            exit();
-        }
-    }
+            }  catch (Exception $e){
+                echo $e->getMessage();
+                exit();
+            }
+            
+                
+                
+		
+	}
 
     public function listarTodos($pagina) {
         try {
@@ -111,24 +117,26 @@ class ClienteController {
         }
     }
 
-    public function editarCliente() {
-        try {
+    public function editarCliente(){
+            try{
             $this->cliente->setNome($_GET["nome"]);
             $this->cliente->setEmail($_GET["email"]);
             $this->cliente->setTelefone($_GET["telefone"]);
             $this->cliente->setEmpresa($_GET["empresa"]);
             $this->cliente->setCpf($_GET["cpf"]);
             $this->cliente->setEndereco($_GET["endereco"]);
+            $this->cliente->setLogin($_GET["login"]);
             $this->cliente->setSenha($_GET["senha"]);
             $this->cliente->setId($_GET["id_cliente"]);
             $this->cliente->editarCliente();
-            $this->listarTodos("editar");
-        } catch (Exception $e) {
-            echo $e->getMessage();
-            exit();
+            $this->listarTodos(null);
+            }  catch (Exception $e){
+                echo $e->getMessage();
+                exit();
+            }
+            
+                  
         }
-    }
-
 }
 
 

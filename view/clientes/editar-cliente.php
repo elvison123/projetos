@@ -18,6 +18,10 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/valida_cpf_cnpj.js"></script>-->
+        <script src="../js/exemplo_1.js"></script>
+        <script src="../js/exemplo_2.js"></script>     
+        <script src="../js/exemplo_3.js"></script> 
         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
@@ -70,67 +74,84 @@ if(!isset($_SESSION["nomeusuario"])){
     </ul>
 
  <div class="container">
-    
-     
-     
-     
     <div class="row">
         <div class="col-xs-4">
             <h1 class="h1">Editar Clientes</h1>
         </div>
     </div>
 
-<div class="container-fluid">
-    <form action="../../controller/ClienteController.php" method="GET">
+<div class="container">
+    <form action="../../controller/ClienteController.php" method="GET" id="formcad" novalidate="">
 		<input type="hidden" name="acao" value="editar">
                 <input type="hidden" name="id_cliente" value="<?php echo ltrim($_GET['id_cliente']);?>" >
-		<div class="row">
-			<div class="form-group col-md-4 col-md-offset-2">
-				<label for="nome">Nome completo</label> 
-                                <input type="text" class="form-control" name="nome" id="nome"  value="<?php echo ltrim($_GET["nome"]);?>" vaplaceholder="Digite o nome do cliente">
+		
+                <div class="form-group row">
+			<label for="nome" class="col-xs-2 col-form-label">Nome completo</label> 
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="nome" id="nome" required maxlength="50" value="<?php echo ltrim($_GET["nome"]);?>" placeholder="Digite o nome do cliente">
 			</div>
-
+                </div>
+        	<div class="form-group row">
+			<label for="email" class="col-xs-2 col-form-label">E-mail</label> 
+                        <div class="col-xs-8" >
+                            <input type="email" class="form-control" name="email" id="email" required maxlength="50" value="<?php echo ltrim($_GET["email"]);?>" placeholder="Digite o email do cliente">
+			</div>
+                </div>
+		               
+                <div class="form-group row">
+                    <label  for="login" class="col-xs-2 col-form-label">Login</label>
+                    <div class="col-xs-8">
+                        <input  type="text"class="form-control" name="login" id="login" value="<?php echo ltrim($_GET["login"]) ?>" required maxlength="20" placeholder="Digite o nome de acesso do usuario">
+                    </div>
+                </div>
+                
+                
+                <div class="form-group row ">
+			<label for="senha" class="col-xs-2 col-form-label">Senha</label> 
+                        <div class="col-xs-8" >    
+                            <input type="password"class="form-control"  name="senha" required maxlength="20" value="<?php echo ltrim($_GET["senha"]);?>"id="senha" placeholder="Digite a senha">
+                        </div>
 		</div>
-		<div class="row">
-			<div class="form-group col-md-4 col-md-offset-2">
-				<label for="email">E-mail</label> 
-                                <input type="email"class="form-control" name="email" id="email"value="<?php echo ltrim($_GET["email"]);?>" placeholder="Digite o email do cliente">
+                
+                <div class="form-group row">
+                <label for="senhaRep"  class="col-xs-2 col-form-label" >Confirme Senha</label>
+                <div class="col-xs-8">
+                    <input type="password"class="form-control"  name="senhaRep" value="<?php echo ltrim($_GET["senha"]) ?>" id="senhaRep" required maxlength="20" placeholder="Digite a senha">
+                </div>
+                </div>
+                
+		<div class="form-group row">
+			<label for="telefone" class="col-xs-2 col-form-label">Telefone</label> 
+                        <div class="col-xs-8">
+                                <input type="text"class="form-control" name="telefone"value="<?php echo ltrim($_GET["telefone"]);?>" id="telefone" required maxlength="14" placeholder="Digite o telefone">
 			</div>
-			<div class="form-group col-md-1 ">
-				<label for="senha">Senha</label> 
-                                <input type="password"class="form-control"  name="senha" value="<?php echo ltrim($_GET["senha"]);?>"id="senha" placeholder="Digite a senha">
-			</div>
-		</div>
-		<div class="row">
-			<div class="form-group col-md-3 col-md-offset-2">
-				<label for="telefone">telefone</label> 
-                                <input type="text"class="form-control" name="telefone"value="<?php echo ltrim($_GET["telefone"]);?>" id="telefone" placeholder="Digite o telefone">
-			</div>
-			<div class="form-group col-md-2">
-				<label for="cfp">CPF</label> 
-                                <input type="text"class="form-control"  name="cpf" id="cpf"value="<?php echo ltrim($_GET["cpf"]);?>" placeholder="Digite o cpf">
-			</div>
-		</div>
-		<div class="row">	
-			
-			<div class="form-group col-md-5 col-md-offset-2">
-				<label for="empresa">Empresa</label> 
-                                <input type="text"class="form-control"  name="empresa" id="empresa" value="<?php echo ltrim($_GET["empresa"]);?>" placeholder="Digite o nome da empresa">
+                </div>
+                
+			<div class="form-group row">
+				<label for="cfp" class="col-xs-2 col-form-label">CPF</label> 
+                                <div class="col-xs-8">
+                                    <input type="text"class="form-control cpf_cnpj"  name="cpf" id="cpf"value="<?php echo ltrim($_GET["cpf"]);?>" required maxlength="14" placeholder="Digite o cpf">
 			</div>
 		</div>
-		<div class="row">	
-			
-			<div class="form-group col-md-5 col-md-offset-2">
-				<label for="endereco">Endereco</label> 
-                                <input type="text"class="form-control"  name="endereco" id="endereco" value="<?php echo ltrim($_GET["endereco"]);?>"placeholder="Digite o endereco">
-			</div>
+		
+            <div class=" form-group row">	
+                <label for="empresa" class="col-xs-2 col-form-label">Empresa</label> 
+                    <div class="col-xs-8">
+                        <input type="text"class="form-control"  name="empresa" id="empresa" value="<?php echo ltrim($_GET["empresa"]);?>" required maxlength="50" placeholder="Digite o nome da empresa">
 		</div>
+            </div>		
+            <div class="form-group row ">
+                <label for="endereco" class="col-xs-2 col-form-label">Endereço</label> 
+                    <div class="col-xs-8">
+                        <input type="text"class="form-control"  name="endereco" id="endereco" value="<?php echo ltrim($_GET["endereco"]);?>" required maxlength="50" placeholder="Digite o endereco">
+                    </div>
+            </div>
 		
 		
 		
 
-		 <div class="form-group col-md-offset-2">
-                     <input type="submit"value="Cadastrar">
+		 <div class="form-group col-md-offset-0">
+                     <input type="submit"value="Cadastrar" class="btn-default">
                      
   		</div>
 
@@ -138,7 +159,110 @@ if(!isset($_SESSION["nomeusuario"])){
 	</form>
 </div>
    
+ <script>
+                $(document).ready(function () {
+                    $("#formcad").validate({
+                        rules: {
+                            nome: {
+                                required: true,
+                                minlength: 2
 
+                            },
+                            email: {
+                                required: true,
+                                maxlength: 50
+                            },
+                            login: {
+                                required: true,
+                                maxlength: 20
+
+                            },
+                            senha: {
+                                required: true,
+                                rangelength: [4, 20]
+
+                            },
+                            senhaRep: {
+                                required: true,
+                                equalTo: "#senha"
+
+                            },
+                            
+                            cpf: {
+                                required: true,
+                                //minlength: 14,
+                                //maxlength: 14
+
+                            },
+                            empresa: {
+                                required: true,
+                                maxlength: 50
+                            }
+                            
+
+                        },
+                        messages: {
+                            nome: {
+                                required: "Preenchimento obrigatório!",
+                                minlength: "Deve conter no minimo 2 caracteres!"
+                            },
+                            email: {
+                                required: "Preenchimento obrigatório!!",
+                                email: "Email invalido!!",
+                                maxlength: "Deve conter no máximo 50 caracteres."
+                            },
+                            login: {
+                                required: "Preenchimento obrigatório!!",
+                                maxlength: "Deve conter no máximo 20 caracteres."
+
+                            },
+                            senha: {
+                                required: "Preenchimento obrigatório!!",
+                                rangelength: "Preencher com no minimo 4 e no máximo 20 caracteres!"
+
+                            },
+                            senhaRep: {
+                                required: "Preenchimento obrigatório!!",
+                                equalTo: "Senhas diferentes"
+
+                            },
+                            
+                            cpf: {
+                                required: "Preenchimento obrigatório!!",
+                              //  minlength: "Deve conter no minimo 14 caracteres.",
+                              //  maxlength: "Deve conter no máximo 14 caracteres."
+
+                            },
+                            
+                            telefone: {
+                                required: "Preenchimento obrigatório!!",
+                                maxlength: "Deve conter no máximo 14 caracteres."
+                            },
+                            
+                            empresa: {
+                                required: "Preenchimento obrigatório!!",
+                                maxlength: "Deve conter no máximo 50 caracteres."
+                            },
+                            
+                            endereco: {
+                                required: "Preenchimento obrigatório!!",
+                                maxlength: "Deve conter no máximo 50 caracteres."
+                            }
+                            
+                           
+
+                        }
+
+                    });
+
+                });
+                $(function () {
+                    $("#telefone").mask("(99)99999-9999");
+                    $("#cpf").mask("999.999.999-99");
+                });
+
+
+            </script>
 
 
 

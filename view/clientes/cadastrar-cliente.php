@@ -1,9 +1,9 @@
 <?php 
 session_start();
-//if(!isset($_SESSION["nomeusuario"])){
-//    header('Location: LoginUsuario.php');
-//   
-//}
+if(!isset($_SESSION["nomeusuario"])){
+    header('Location: LoginUsuario.php');
+   
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,6 +18,13 @@ session_start();
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/valida_cpf_cnpj.js"></script>-->
+        <script src="../js/exemplo_1.js"></script>
+        <script src="../js/exemplo_2.js"></script>     
+        <script src="../js/exemplo_3.js"></script>    
+        
+ 
+        
         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
@@ -55,16 +62,6 @@ session_start();
                 
 
             </ul></li>
-            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                                    aria-expanded="false"> Cadastros <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#"> Modulos </a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar funções dos modulos</a></li>
-                
-
-            </ul></li>
             <ul class="nav navbar-nav navbar-right">
             
             <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><?php  if (isset($_SESSION['nomeusuario'])){echo "Olá, " . $_SESSION["nomeusuario"];}; ?><b class="caret"></b></a>
@@ -99,55 +96,66 @@ session_start();
     </div>
 
     <div class="container">
-        <form action="../../controller/ClienteController.php" method="GET" id="formcad" novalidate="" >
+        <form action="../../controller/ClienteController.php" method="GET" id="formcad" onclick="" novalidate="" >
             <input type="hidden" name="acao" value="cadastrar">
 
             <div class="form-group row">
                 <label for="nome" class="col-xs-2 col-form-label"  >Nome completo</label>
-                <div class="col-xs-10">
-                    <input type="name" class="form-control" name="nome"   id="nome" required maxlength="100" placeholder="Digite o nome do cliente">
+                <div class="col-xs-8">
+                    <input type="name" class="form-control" name="nome"   id="nome" required maxlength="50" placeholder="Digite o nome do cliente">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-xs-2 col-form-label">E-mail</label>
-                <div class="col-xs-10" >
+                <div class="col-xs-8" >
                     <input type="email"class="form-control" name="email"  id="email" required maxlength="50" placeholder="Digite o email do cliente">
                 </div>
             </div>
+            
+            <div class="form-group row">
+                <label  for="login" class="col-xs-2 col-form-label">Login</label>
+                <div class="col-xs-8">
+                    <input  type="text"class="form-control" name="login" id="login" required maxlength="20" placeholder="Digite o nome de acesso do usuario">
+                </div>
+            </div>
+            
             <div class="form-group row">
                 <label  for="senha" class="col-xs-2 col-form-label" >Senha</label>
-                <div class="col-xs-10">
-                    <input type="password"class="form-control"  name="senha" id="senha"  required maxlength="10" placeholder="Digite a senha">
+                <div class="col-xs-8">
+                    <input type="password"class="form-control"  name="senha" id="senha"  required maxlength="20" placeholder="Digite a senha">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="senhaRep"  class="col-xs-2 col-form-label" >Confirme Senha</label>
-                <div class="col-xs-10">
-                    <input type="password"class="form-control"  name="senhaRep"  id="senhaRep" required maxlength="10" placeholder="Digite a senha">
+                <div class="col-xs-8">
+                    <input type="password"class="form-control"  name="senhaRep"  id="senhaRep" required maxlength="20" placeholder="Digite a senha">
                 </div>
             </div>
             <div class="form-group row">
-                <label  for="telefone" class="col-xs-2 col-form-label">telefone</label>
-                <div class="col-xs-10">
+                <label  for="telefone" class="col-xs-2 col-form-label">Telefone</label>
+                <div class="col-xs-8">
                     <input  type="text"class="form-control" name="telefone" id="telefone" required maxlength="50" placeholder="Digite o telefone">
                 </div>
             </div>
+            
             <div class="form-group row">
-                <label  for="cpf" class="col-xs-2 col-form-label" >CPF/CNPJ</label>
-                <div class="col-xs-10">
-                    <input  type="text"class="form-control"  name="cpf" id="cpf" required minlength="14" maxlength="14" placeholder="Digite o cpf">
+                
+                <label  for="cpf" class="col-xs-2 col-form-label" >CPF:</label>
+                <div class="col-xs-8">
+
+                    <input  type="text"class="form-control cpf_cnpj" required maxlength="14"  name="cpf" id="cpf" placeholder="Digite o CPF">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="empresa" class="col-xs-2 col-form-label" >Empresa</label>
-                <div class="col-xs-10">
-                    <input  type="text"class="form-control"  name="empresa" id="empresa" required maxlength="100" placeholder="Digite o nome da empresa">
+                <div class="col-xs-8">
+                    <input  type="text"class="form-control"  name="empresa" id="empresa" required maxlength="50" placeholder="Digite o nome da empresa">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="endereco" class="col-xs-2 col-form-label" >Endereco</label>
-                <div class="col-xs-10">
-                    <input type="text"class="form-control"  name="endereco" id="endereco" required maxlength="150" placeholder="Digite o endereco">
+                <label for="endereco" class="col-xs-2 col-form-label" >Endereço</label>
+                <div class="col-xs-8">
+                    <input type="text"class="form-control"  name="endereco" id="endereco" required maxlength="50" placeholder="Digite o endereco">
                 </div>
             </div>
 
@@ -179,7 +187,7 @@ session_start();
                             },
                             senha: {
                                 required: true,
-                                rangelength: [4, 10]
+                                rangelength: [4, 20]
 
                             },
                             senhaRep: {
@@ -189,22 +197,22 @@ session_start();
                             },
                             telefone: {
                                 required: true,
-                                maxlength: 50
+                                maxlength: 14
 
                             },
                             cpf: {
-                                required: true,
-                                minlength: 14,
-                                maxlength: 14
+                                required: true
+//                                minlength: 14,
+//                                maxlength: 14
 
                             },
                             empresa: {
                                 required: true,
-                                maxlength: 100
+                                maxlength: 50
                             },
                             endereco: {
                                 required: true,
-                                maxlength: 150
+                                maxlength: 50
                             }
 
                         },
@@ -220,7 +228,7 @@ session_start();
                             },
                             senha: {
                                 required: "Preenchimento obrigatório!!",
-                                rangelength: "Preencher com no minimo 4 e no máximo 10 caracteres!"
+                                rangelength: "Preencher com no minimo 4 e no máximo 20 caracteres!"
 
                             },
                             senhaRep: {
@@ -230,22 +238,22 @@ session_start();
                             },
                             telefone: {
                                 required: "Preenchimento obrigatório!!",
-                                maxlength: "Deve conter no máximo 50 caracteres."
-
-                            },
-                            cpf: {
-                                required: "Preenchimento obrigatório!!",
-                                minlength: "Deve conter no minimo 14 caracteres.",
                                 maxlength: "Deve conter no máximo 14 caracteres."
 
                             },
+                            cpf: {
+                                required: "Preenchimento obrigatório!!"
+////                                minlength: "Deve conter no minimo 14 caracteres.",
+//                                maxlength: "Deve conter no máximo 14 caracteres."
+//
+                            },
                             empresa: {
                                 required: "Preenchimento obrigatório!!",
-                                maxlength: "Deve conter no máximo 100 caracteres."
+                                maxlength: "Deve conter no máximo 50 caracteres."
                             },
                             endereco: {
                                 required: "Preenchimento obrigatório!!",
-                                maxlength: "Deve conter no máximo 150 caracteres."
+                                maxlength: "Deve conter no máximo 50 caracteres."
                             }
 
                         }
