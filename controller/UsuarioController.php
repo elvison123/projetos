@@ -52,7 +52,6 @@ class UsuarioController{
 //        include '../view/usuarios/listar-usuario.php';
         session_start();
         $_SESSION["usuarios"] = $usuarios;
-        echo "ok";
         header ('Location: ../view/usuarios/listar-usuario.php');
         
         }  catch (Exception $e){
