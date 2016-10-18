@@ -18,7 +18,7 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/valida_cpf_cnpj.js"></script>-->
+<!--        <script src="../js/valida_cpf_cnpj.js"></script>-->
         <script src="../js/exemplo_1.js"></script>
         <script src="../js/exemplo_2.js"></script>     
         <script src="../js/exemplo_3.js"></script> 
@@ -128,7 +128,7 @@ if(!isset($_SESSION["nomeusuario"])){
                 </div>
                 
 			<div class="form-group row">
-				<label for="cfp" class="col-xs-2 col-form-label">CPF</label> 
+				<label for="cpf" class="col-xs-2 col-form-label">CPF</label> 
                                 <div class="col-xs-8">
                                     <input type="text"class="form-control cpf_cnpj"  name="cpf" id="cpf"value="<?php echo ltrim($_GET["cpf"]);?>" required maxlength="14" placeholder="Digite o cpf">
 			</div>

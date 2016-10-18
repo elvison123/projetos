@@ -35,9 +35,9 @@ class FuncaoModulo extends Banco{
             $db = $this->instancia();
             $sql= "INSERT INTO funcaomodulo (nome,codigo,id_modulo_fk) VALUES (?,?,?)";
             $stmt= $db->prepare($sql);
-            $stmt->bindParam("1", $this->getFuncao());
-            $stmt->bindParam("2", $this->getCodigo());
-            $stmt->bindParam("3", $this->getModulofk());
+            $stmt->bindParam("1", $this->funcao);
+            $stmt->bindParam("2", $this->codigo);
+            $stmt->bindParam("3", $this->modulofk);
             $stmt->execute();
                        
             

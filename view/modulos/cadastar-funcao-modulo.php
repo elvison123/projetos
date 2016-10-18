@@ -79,7 +79,7 @@ session_start();
                     <select name="modulo">
                          <?php session_start() ?>
             <?php if (isset($_SESSION["nome"])){foreach ($_SESSION["nome"] as $modulos):?> 
-                                    <option value="<?php echo $modulos['nome']; ?>"><?php echo $modulos['nome']; ?></option>
+                                    <option value="<?php echo $modulos['id_modulo']; ?>"><?php echo $modulos['nome']; ?></option>
                                <?php endforeach;}?> 
                     </select>
                 </div>

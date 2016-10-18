@@ -54,7 +54,9 @@ class ClienteController {
                 $this->cliente->setSenha($_GET["senha"]);
                 
 		$this->cliente->cadastrarUsuario();
-                $mensagem= "O usuario<strong> " .$this->cliente->getNome()." </strong>foi cadastrado";
+                $nome = $this->cliente->getNome();
+                
+                $mensagem= "O usuario<strong> " .$nome." </strong>foi cadastrado";
                 header("Location: ../view/clientes/cadastrar-cliente.php?status=".$mensagem);
 //                include '../../view/clientes/cadastrar-cliente.php';
             }  catch (Exception $e){

@@ -18,7 +18,7 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/valida_cpf_cnpj.js"></script>-->
+<!--        <script src="../js/valida_cpf_cnpj.js"></script>-->
         <script src="../js/exemplo_1.js"></script>
         <script src="../js/exemplo_2.js"></script>     
         <script src="../js/exemplo_3.js"></script>    
