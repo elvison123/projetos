@@ -1,9 +1,9 @@
 <?php 
 session_start();
-//if(!isset($_SESSION["nomeusuario"])){
-//    header('Location: LoginUsuario.php');
-//   
-//}
+if(!isset($_SESSION["nomeusuario"])){
+    header('Location: LoginUsuario.php');
+   
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,7 +18,8 @@ session_start();
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <!-- Bootstrap -->
+      
+         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
     </head>
@@ -55,6 +56,18 @@ session_start();
                 
 
             </ul></li>
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                    aria-expanded="false"> Chamados <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Modulos</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                
+
+            </ul></li>
+            
             <ul class="nav navbar-nav navbar-right">
             
             <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><?php  if (isset($_SESSION['nomeusuario'])){echo "Olá, " . $_SESSION["nomeusuario"];}; ?><b class="caret"></b></a>
@@ -70,16 +83,23 @@ session_start();
     </ul>
     
     <div class="container">
+        <?php if (isset($_GET['status'])) { ?>
+                <div class="alert alert-info">
+                    <center><?php echo $_GET['status']; ?></center>
+                </div>
+           
+
+        <?php }; ?>
         <h1>Cadastrar funções do modulo</h1>
         <form action="../../controller/ModuloController.php" id="formcad" method="get">
             <input type="hidden" value="cadastrarfuncao" name="acao">
             <div class="form-group row">
                 <label class="col-xs-2 col-form-label" for="modulo">Modulo</label>
                 <div class="col-xs-10">
-                    <select name="modulo">
+                    <select name="moduloid">
                          <?php session_start() ?>
-            <?php if (isset($_SESSION["nome"])){foreach ($_SESSION["nome"] as $modulos):?> 
-                                    <option value="<?php echo $modulos['id_modulo']; ?>"><?php echo $modulos['nome']; ?></option>
+            <?php if (isset($_SESSION["modulos"])){foreach ($_SESSION["modulos"] as $modulos):?> 
+                                    <option value="<?php echo $modulos['id_modulo']; ?>"><?php echo $modulos['nomeModulo']; ?></option>
                                <?php endforeach;}?> 
                     </select>
                 </div>
@@ -87,7 +107,7 @@ session_start();
             <div class="form-group row">
                 <label for="nome" class="col-form-label col-xs-2">Nome da função</label>
                     <div class="col-xs-10">
-                        <input type="text"name="nome" class="form-control">
+                        <input type="text" name="nome" class="form-control">
                     </div>
             </div>
             <div class="form-group row">
@@ -99,7 +119,48 @@ session_start();
             <div class="form-group col-xs-2">
                 <input class="btn btn-default" type="submit" value="Cadastrar">
             </div>
-                    
+                <script>
+                $(document).ready(function () {
+                    $("#formcad").validate({
+                        rules: {
+                            nome: {
+                                required: true,
+                                maxlength:100,
+                                minlength: 1
+
+                            },
+                            
+                            codigo: {
+                                required: true,
+                                number:true,
+                                maxlength: 50,
+                                minlength: 1
+                            }
+                            
+
+                        },
+                        messages: {
+                            nome: {
+                                required: "Preenchimento obrigatório!",
+                                maxlength:"Deve conter no máximo 100 caracteres1",
+                                minlength:"Deve conter no minimo 1 caracteres!"
+
+                            },
+                            
+                            codigo: {
+                                required:"Preenchimento obrigatório!",
+                                number:"Preencher apenas com numeros!",
+                                maxlength:"Deve conter no máximo 50 caracteres!",
+                                minlength:"Deve conter no minimo 1 caracteres!"
+                            }
+                                                    
+
+                        }
+
+                    });
+
+                });
+                </script>    
             
             
             

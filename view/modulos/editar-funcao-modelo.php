@@ -18,7 +18,8 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <!-- Bootstrap -->
+      
+         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
     </head>
@@ -80,101 +81,83 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
-
-  <div class="container">
-      <?php if (isset($_GET['status'])) { ?>
-                <div class="alert alert-info">
-                    <center><?php echo $_GET['status']; ?></center>
-                </div>
-           
-
-        <?php }; ?> 
-         
-      
-    <div class="row">
-        <div class="col-xs-4">
-            <h1 class="h1">Listar Clientes</h1>
-        </div>
-    </div>
     <div class="container">
-        <table class="table table-bordered table-hover">
-            
-            <thead>
-                <tr class="info">
-                <td><strong>ID</strong></td>
-                <td><strong>NOME</strong></td>
-                <td><strong>EMAIL</strong></td>
-                <td><strong>TELEFONE</strong></td>
-                <td><strong>CPF</strong></td>
-                <td><strong>EMPRESA</strong></td>
-                <td><strong>ENDEREÇO</strong></td>
-                <td><strong>SENHA</strong></td>
-                <td><strong>DELETAR</strong></td>
-                <td><strong>EDITAR</strong></td>
-                               
-            </tr>
-            </thead>    
-
-            
-            <?php if (isset($_SESSION["clientes1"])){foreach ($_SESSION["clientes1"] as $clientes):?>     
-            <tbody>        
-            <tr> 
-                <td><?php echo $clientes["id_cliente"];?></td>
-                <td><?php echo $clientes["nome"];?></td>
-                <td><?php echo $clientes["email"];?></td>
-                <td><?php echo $clientes["telefone"];?></td>
-                <td><?php echo $clientes["cpf"];?></td>
-                <td><?php echo $clientes["empresa"];?></td>
-                <td><?php echo $clientes["endereco"];?></td>
-                <td><?php echo $clientes["senha"];?></td>
-                <td><button class="delete btn btn-danger" data-nome ="<?php echo $clientes["nome"]; ?>" data-id="<?php echo $clientes["id_cliente"]; ?>"data-target="#myModal">Excluir</td>
-                
-                <td><a class="btn btn-default" href="editar-cliente.php?id_cliente=<?php echo $clientes["id_cliente"];?>&nome=<?php echo $clientes['nome'];?>&email=<?php echo $clientes["email"];?>
-                       &telefone=<?php echo $clientes["telefone"];?>&cpf=<?php echo $clientes["cpf"];?>&empresa=<?php echo $clientes["empresa"];?>&
-                       endereco=<?php echo $clientes["endereco"];?>&senha=<?php echo $clientes["senha"];?>" role="button">Editar</a></td>
-            </tr>
-            </tbody>
-                    
-            <?php endforeach;}?>   
-            
-        </table>
-        </div>
-        <script>
-        $('.delete').on('click', function () {
-                    var nome = $(this).data('nome'); 
-                    var id = $(this).data('id');
-                    $('span.nome').text(nome); 
-                    $('a.delete-yes').attr('href', '../../controller/ClienteController.php?acao=deletar&id=' + id); 
-                    $('#myModal').modal('show'); 
-                });
-        </script>
-        
-        
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Confirmar Ação</h4>
-                    </div>
-                    <div class="modal-body">
-                        Tem certeza que deseja excluir o cliente <strong><span class="nome"></span></strong>?
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" type="button" class="btn btn-default delete-yes">Sim</a>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                    </div>
+        <h1>Cadastrar funções do modulo</h1>
+        <form action="../../controller/ModuloController.php" id="formcad" method="get">
+            <input type="hidden" value="editarfuncao" name="acao">
+            <input type="hidden" value="<?php echo $_GET['id_funcao']; ?>" name="funcaoid">
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label" for="modulo">Modulo</label>
+                <div class="col-xs-10">
+                    <select name="moduloid">
+                          
+                                    <option value="<?php echo $_GET['id_modulo_fk']; ?>"><?php echo $_GET['nomeModulo']; ?></option>
+                            
+                    </select>
                 </div>
             </div>
-        </div>
+            <div class="form-group row">
+                <label for="nome" class="col-form-label col-xs-2">Nome da função</label>
+                    <div class="col-xs-10">
+                        <input type="text"name="nome" value="<?php echo $_GET['nome']; ?>"class="form-control">
+                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="codigo" class="col-form-label col-xs-2">Codigo da função</label>
+                    <div class="col-xs-10">
+                        <input type="text" name="codigo" value="<?php echo $_GET['codigo']; ?>"class="form-control">
+                    </div>
+            </div>
+            <div class="form-group col-xs-2">
+                <input class="btn btn-default" type="submit" value="Cadastrar">
+            </div>
+                <script>
+                $(document).ready(function () {
+                    $("#formcad").validate({
+                        rules: {
+                            nome: {
+                                required: true,
+                                maxlength:100,
+                                minlength: 1
 
+                            },
+                            
+                            codigo: {
+                                required: true,
+                                number:true,
+                                maxlength: 50,
+                                minlength: 1
+                            }
+                            
+
+                        },
+                        messages: {
+                            nome: {
+                                required: "Preenchimento obrigatório!",
+                                maxlength:"Deve conter no máximo 100 caracteres1",
+                                minlength:"Deve conter no minimo 1 caracteres!"
+
+                            },
+                            
+                            codigo: {
+                                required:"Preenchimento obrigatório!",
+                                number:"Preencher apenas com numeros!",
+                                maxlength:"Deve conter no máximo 50 caracteres!",
+                                minlength:"Deve conter no minimo 1 caracteres!"
+                            }
+                                                    
+
+                        }
+
+                    });
+
+                });
+                </script>     
+            
+            
+            
+            
+        </form> 
         
         
-        
-
-
-
-
-    </body>
-</html>
+    </div>

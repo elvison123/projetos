@@ -18,7 +18,8 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <!-- Bootstrap -->
+      
+         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
     </head>
@@ -80,101 +81,82 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
-
-  <div class="container">
-      <?php if (isset($_GET['status'])) { ?>
-                <div class="alert alert-info">
+    
+    <div class="container">
+        <?php if (!$_GET['status']==null) { ?>
+                <div class="alert alert-danger">
                     <center><?php echo $_GET['status']; ?></center>
                 </div>
            
 
-        <?php }; ?> 
-         
-      
-    <div class="row">
-        <div class="col-xs-4">
-            <h1 class="h1">Listar Clientes</h1>
-        </div>
-    </div>
-    <div class="container">
-        <table class="table table-bordered table-hover">
-            
-            <thead>
-                <tr class="info">
-                <td><strong>ID</strong></td>
-                <td><strong>NOME</strong></td>
-                <td><strong>EMAIL</strong></td>
-                <td><strong>TELEFONE</strong></td>
-                <td><strong>CPF</strong></td>
-                <td><strong>EMPRESA</strong></td>
-                <td><strong>ENDEREÇO</strong></td>
-                <td><strong>SENHA</strong></td>
-                <td><strong>DELETAR</strong></td>
-                <td><strong>EDITAR</strong></td>
-                               
-            </tr>
-            </thead>    
-
-            
-            <?php if (isset($_SESSION["clientes1"])){foreach ($_SESSION["clientes1"] as $clientes):?>     
-            <tbody>        
-            <tr> 
-                <td><?php echo $clientes["id_cliente"];?></td>
-                <td><?php echo $clientes["nome"];?></td>
-                <td><?php echo $clientes["email"];?></td>
-                <td><?php echo $clientes["telefone"];?></td>
-                <td><?php echo $clientes["cpf"];?></td>
-                <td><?php echo $clientes["empresa"];?></td>
-                <td><?php echo $clientes["endereco"];?></td>
-                <td><?php echo $clientes["senha"];?></td>
-                <td><button class="delete btn btn-danger" data-nome ="<?php echo $clientes["nome"]; ?>" data-id="<?php echo $clientes["id_cliente"]; ?>"data-target="#myModal">Excluir</td>
-                
-                <td><a class="btn btn-default" href="editar-cliente.php?id_cliente=<?php echo $clientes["id_cliente"];?>&nome=<?php echo $clientes['nome'];?>&email=<?php echo $clientes["email"];?>
-                       &telefone=<?php echo $clientes["telefone"];?>&cpf=<?php echo $clientes["cpf"];?>&empresa=<?php echo $clientes["empresa"];?>&
-                       endereco=<?php echo $clientes["endereco"];?>&senha=<?php echo $clientes["senha"];?>" role="button">Editar</a></td>
-            </tr>
-            </tbody>
-                    
-            <?php endforeach;}?>   
-            
-        </table>
-        </div>
-        <script>
-        $('.delete').on('click', function () {
-                    var nome = $(this).data('nome'); 
-                    var id = $(this).data('id');
-                    $('span.nome').text(nome); 
-                    $('a.delete-yes').attr('href', '../../controller/ClienteController.php?acao=deletar&id=' + id); 
-                    $('#myModal').modal('show'); 
+        <?php }; ?>
+        <h1>Cadastrar funções do modulo</h1>
+        <div class="row col-xs-12">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <td>Codigo</td>
+                        <td>Modulo</td>
+                        <td>Função</td>
+                        <td class="danger">Deletar</td>
+                        <td class="danger">Editar</td>
+                    </tr>
+                </thead>
+                <?php if (isset($_SESSION["linhas"])){foreach ($_SESSION["linhas"] as $linha):?>   
+                <tbody>
+                    <tr>
+                        <td><?php echo $linha["codigo"]?></td>
+                        <td><?php echo $linha["nomeModulo"]?></td>
+                        <td><?php echo $linha["nome"]?></td>
+                        <td><a class="delete btn btn-danger" data-nome="<?php echo $linha["nome"]?>" data-id="<?php echo $linha["id_funcao"]?>"data-target="#myModal">Excluir</a></td>
+                        <td><a class="btn btn-default" href="../modulos/editar-funcao-modelo.php?codigo=<?php echo $linha["codigo"]?>&nomeModulo=<?php echo $linha["nomeModulo"]?>&nome=<?php echo $linha["nome"]?>&id_funcao=<?php echo $linha["id_funcao"]?>&id_modulo_fk=<?php echo $linha["id_modulo_fk"]?>">Editar</a></td>
+                            
+                    </tr>
+                </tbody>
+                <?php    
+                    endforeach;
+                }
+                ?>
+            </table>
+            <script>
+                $('.delete').on('click', function () {
+                    var nome = $(this).data('nome'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
+                    var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
+                    $('span.nome').text(nome); // inserir na o nome na pergunta de confirmação dentro da modal
+                    $('a.delete-yes').attr('href', '../../controller/ModuloController.php?acao=excluirfuncao&id_funcao=' + id); // mudar dinamicamente o link, href do botão confirmar da modal
+                    $('#myModal').modal('show'); // modal aparece
                 });
-        </script>
-        
-        
+            </script>
+            
+            
+        </div>
         <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Confirmar Ação</h4>
-                    </div>
-                    <div class="modal-body">
-                        Tem certeza que deseja excluir o cliente <strong><span class="nome"></span></strong>?
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" type="button" class="btn btn-default delete-yes">Sim</a>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirmar Ação</h4>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja excluir a função <strong><span class="nome"></span></strong>?
+                </div>
+                <div class="modal-footer">
+                    <a href="#" type="button" class="btn btn-default delete-yes">Sim</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
                 </div>
             </div>
         </div>
-
+    </div>
+        
+            
+            
+        
+            
+            
+            
+            
+        </form> 
         
         
-        
-
-
-
-
-    </body>
-</html>
+</div>

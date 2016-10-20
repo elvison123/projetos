@@ -18,14 +18,11 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-<!--        <script src="../js/valida_cpf_cnpj.js"></script>-->
+        <!--<script src="../js/valida_cpf_cnpj.js"></script>-->
         <script src="../js/exemplo_1.js"></script>
         <script src="../js/exemplo_2.js"></script>     
-        <script src="../js/exemplo_3.js"></script>    
-        
- 
-        
-        <!-- Bootstrap -->
+        <script src="../js/exemplo_3.js"></script> 
+         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
     </head>
@@ -36,7 +33,7 @@ if(!isset($_SESSION["nomeusuario"])){
                                                     aria-expanded="false"> Clientes <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="cadastrar-cliente.php">Cadastrar Clientes</a></li>
+                <li><a href="../clientes/cadastrar-cliente.php">Cadastrar Clientes</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/ClienteController.php?acao=buscartodos" >Mostrar Clientes Cadastrados</a></li>
                 <li role="separator" class="divider"></li>
@@ -62,6 +59,18 @@ if(!isset($_SESSION["nomeusuario"])){
                 
 
             </ul></li>
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                    aria-expanded="false"> Chamados <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Modulos</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                
+
+            </ul></li>
+            
             <ul class="nav navbar-nav navbar-right">
             
             <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><?php  if (isset($_SESSION['nomeusuario'])){echo "Olá, " . $_SESSION["nomeusuario"];}; ?><b class="caret"></b></a>

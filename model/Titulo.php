@@ -100,7 +100,7 @@ class Titulo extends Banco {
             $stmt->bindValue("7", $this->descricao, PDO::PARAM_STR);
             $stmt->bindValue("8", $this->id_cliente, PDO::PARAM_INT);
             $stmt->execute();
-        } catch (PDOException $e) {
+        } catch (PDOException $e){
 
             echo $e->getMessage();
             exit();

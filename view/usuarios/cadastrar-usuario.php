@@ -1,9 +1,9 @@
 <?php 
 session_start();
-//if(!isset($_SESSION["nomeusuario"])){
-//    header('Location: LoginUsuario.php');
-//   
-//}
+if(!isset($_SESSION["nomeusuario"])){
+    header('Location: LoginUsuario.php');
+   
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,11 +18,11 @@ session_start();
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-<!--        <script src="../js/valida_cpf_cnpj.js"></script>
+        <script src="../js/valida_cpf_cnpj.js"></script>
         <script src="../js/exemplo_1.js"></script>
         <script src="../js/exemplo_2.js"></script>     
-        <script src="../js/exemplo_3.js"></script> -->
-        <!-- Bootstrap -->
+        <script src="../js/exemplo_3.js"></script> 
+         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
     </head>
@@ -53,19 +53,20 @@ session_start();
                                                     aria-expanded="false"> Usuários <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="cadastrar-usuario.php">Cadastrar Usuários</a></li>
+                <li><a href="../usuarios/cadastrar-usuario.php">Cadastrar Usuários</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/UsuarioController.php?acao=listarusuarios"> Mostrar todos os Usuários cadastrados</a></li>
                 
 
             </ul></li>
             <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                                                    aria-expanded="false"> Cadastros <span class="caret"></span>
+                                                    aria-expanded="false"> Chamados <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="cadastrar-usuario.php">Modulos</a></li>
+                <li><a href="#">Modulos</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
                 
 
             </ul></li>
