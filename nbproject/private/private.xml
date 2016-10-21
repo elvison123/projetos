@@ -12,6 +12,7 @@
             <file>file:/C:/wamp64/www/projetos/view/modulos/editar-funcao-modelo.php</file>
             <file>file:/C:/wamp64/www/projetos/view/usuarios/listar-usuario.php</file>
             <file>file:/C:/wamp64/www/projetos/view/clientes/editar-cliente.php</file>
+            <file>file:/C:/wamp64/www/projetos/model/LoginUsuario.php</file>
             <file>file:/C:/wamp64/www/projetos/view/titulos/listar-titulos.php</file>
             <file>file:/C:/wamp64/www/projetos/model/Titulo.php</file>
             <file>file:/C:/wamp64/www/projetos/view/home/home-usuario.php</file>
@@ -19,6 +20,7 @@
             <file>file:/C:/wamp64/www/projetos/model/Modulo.php</file>
             <file>file:/C:/wamp64/www/projetos/model/FuncaoModulo.php</file>
             <file>file:/C:/wamp64/www/projetos/view/titulos/cadastrar-titulos.php</file>
+            <file>file:/C:/wamp64/www/projetos/model/Banco.php</file>
             <file>file:/C:/wamp64/www/projetos/controller/ModuloController.php</file>
             <file>file:/C:/wamp64/www/projetos/view/usuarios/editar-usuario.php</file>
             <file>file:/C:/wamp64/www/projetos/controller/ClienteController.php</file>

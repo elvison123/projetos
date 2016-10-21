@@ -113,7 +113,7 @@ if(!isset($_SESSION["nomeusuario"])){
             <div class="form-group row">
                 <label for="codigo" class="col-form-label col-xs-2">Codigo da função</label>
                     <div class="col-xs-10">
-                        <input type="text" name="codigo" class="form-control">
+                        <input type="text" name="codigo" id="codigo" placeholder="Preencher com 4 digitos numericos" class="form-control">
                     </div>
             </div>
             <div class="form-group col-xs-2">
@@ -126,17 +126,31 @@ if(!isset($_SESSION["nomeusuario"])){
                             nome: {
                                 required: true,
                                 maxlength:100,
-                                minlength: 1
+                                minlength: 1,
+                                
 
                             },
                             
                             codigo: {
                                 required: true,
-                                number:true,
+                                
                                 maxlength: 50,
-                                minlength: 1
-                            }
-                            
+                                minlength: 1,
+                                
+                                 "remote":
+                                    {
+                                        url: '../../controller/ModuloController.php?acao=validarcodigo',
+                                        type: "post",
+                                        data:
+                                        {
+                                            email: function()
+                                            {
+                                                return $('#register-form :input[name="codigo"]').val();
+                                            }   
+                                        }
+                                }
+                        }
+                              
 
                         },
                         messages: {
@@ -149,9 +163,10 @@ if(!isset($_SESSION["nomeusuario"])){
                             
                             codigo: {
                                 required:"Preenchimento obrigatório!",
-                                number:"Preencher apenas com numeros!",
-                                maxlength:"Deve conter no máximo 50 caracteres!",
-                                minlength:"Deve conter no minimo 1 caracteres!"
+                                
+                                maxlength:"Deve conter no máximo 4 caracteres!",
+                                minlength:"Deve conter no minimo 4 caracteres!",
+                                remote:"codigo já cadastrado"
                             }
                                                     
 
@@ -160,7 +175,14 @@ if(!isset($_SESSION["nomeusuario"])){
                     });
 
                 });
-                </script>    
+                
+                </script> 
+        <script>
+        $(function () {
+                        $("#codigo").mask("9999");
+                        
+                    });
+        </script>
             
             
             

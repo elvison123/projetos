@@ -55,6 +55,19 @@ class FuncaoModulo extends Banco {
             exit();
         }
     }
+    public function validarCodigo($codigo){
+        $db = $this->instancia();
+        $sql="SELECT id_funcao FROM funcaomodulo WHERE codigo=?";
+        $stmt= $db->prepare($sql);
+        $stmt->bindParam("1", $codigo);
+        $stmt->execute();
+        if($stmt->rowCount() == 0){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
 
     public function editarFuncao($id) {
         try {

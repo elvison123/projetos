@@ -105,7 +105,7 @@ if(!isset($_SESSION["nomeusuario"])){
             <div class="form-group row">
                 <label for="codigo" class="col-form-label col-xs-2">Codigo da função</label>
                     <div class="col-xs-10">
-                        <input type="text" name="codigo" value="<?php echo $_GET['codigo']; ?>"class="form-control">
+                        <input type="text" name="codigo" readonly value="<?php echo $_GET['codigo']; ?>"class="form-control">
                     </div>
             </div>
             <div class="form-group col-xs-2">
@@ -118,7 +118,8 @@ if(!isset($_SESSION["nomeusuario"])){
                             nome: {
                                 required: true,
                                 maxlength:100,
-                                minlength: 1
+                                minlength: 1,
+                                
 
                             },
                             
@@ -126,9 +127,11 @@ if(!isset($_SESSION["nomeusuario"])){
                                 required: true,
                                 number:true,
                                 maxlength: 50,
-                                minlength: 1
-                            }
-                            
+                                minlength: 1,
+                                
+                                
+                        }
+                              
 
                         },
                         messages: {
@@ -143,7 +146,8 @@ if(!isset($_SESSION["nomeusuario"])){
                                 required:"Preenchimento obrigatório!",
                                 number:"Preencher apenas com numeros!",
                                 maxlength:"Deve conter no máximo 50 caracteres!",
-                                minlength:"Deve conter no minimo 1 caracteres!"
+                                minlength:"Deve conter no minimo 1 caracteres!",
+                                
                             }
                                                     
 

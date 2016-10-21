@@ -28,6 +28,10 @@ class ModuloController {
             if ($acao == "editarfuncao") {
                 $this->atualizarFuncao();
             }
+            if($acao == "validarcodigo"){
+                $this->validarCodigo();
+                
+            }
             if ($acao == null) {
                 echo "acao nao definido";
             }
@@ -36,8 +40,16 @@ class ModuloController {
             exit();
         }
     }
-
-    function deletarFuncaoPorId() {
+    function validarCodigo(){
+        $codigo = $_POST["codigo"];
+        if($this->funcaoModulo->validarCodigo($codigo)){
+            echo "true";
+        }else{
+            echo "false";
+        }
+    } 
+    
+                function deletarFuncaoPorId() {
         try {
             $id = isset($_GET["id_funcao"]) ? $_GET["id_funcao"] : null;
             $this->funcaoModulo->deletarPorId($id);
@@ -55,14 +67,14 @@ class ModuloController {
         try {
             if ($acao == "padrao") {
                 $linha = $this->funcaoModulo->listarTodos();
-                var_dump($linha);
+                
                 session_start();
                 $_SESSION["linhas"] = $linha;
                 $mensagem=null;
             }
             elseif ($acao == "apagar") {
                 $linha = $this->funcaoModulo->listarTodos();
-                var_dump($linha);
+                
                 session_start();
                 $_SESSION["linhas"] = $linha;
                 $mensagem = "A função<strong> " . $this->funcaoModulo->getFuncao() . " </strong>foi deletada.";
