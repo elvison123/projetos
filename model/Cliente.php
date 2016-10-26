@@ -87,7 +87,7 @@ class Cliente extends Banco {
     }
 
     
-    public function cadastrarUsuario() {
+    public function cadastrarCliente() {
         $db = $this->instancia();
         $sql = "INSERT INTO cliente (nome,email,telefone,cpf,empresa,endereco,login,senha)VALUES (:nome,:email,:telefone,:cpf,:empresa,:endereco,:login,:senha)";
         $stmt = $db->prepare($sql);
