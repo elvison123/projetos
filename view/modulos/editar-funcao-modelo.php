@@ -81,39 +81,31 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
-    
     <div class="container">
-        <?php if (isset($_GET['status'])) { ?>
-                <div class="alert alert-info">
-                    <center><?php echo $_GET['status']; ?></center>
-                </div>
-           
-
-        <?php }; ?>
         <h1>Cadastrar funções do modulo</h1>
         <form action="../../controller/ModuloController.php" id="formcad" method="get">
-            <input type="hidden" value="cadastrarfuncao" name="acao">
+            <input type="hidden" value="editarfuncao" name="acao">
+            <input type="hidden" value="<?php echo $_GET['id_funcao']; ?>" name="funcaoid">
             <div class="form-group row">
                 <label class="col-xs-2 col-form-label" for="modulo">Modulo</label>
                 <div class="col-xs-10">
                     <select name="moduloid">
-                         <?php session_start() ?>
-            <?php if (isset($_SESSION["modulos"])){foreach ($_SESSION["modulos"] as $modulos):?> 
-                                    <option value="<?php echo $modulos['id_modulo']; ?>"><?php echo $modulos['nomeModulo']; ?></option>
-                               <?php endforeach;}?> 
+                          
+                                    <option value="<?php echo $_GET['id_modulo_fk']; ?>"><?php echo $_GET['nomeModulo']; ?></option>
+                            
                     </select>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nome" class="col-form-label col-xs-2">Nome da função</label>
                     <div class="col-xs-10">
-                        <input type="text" name="nome" class="form-control">
+                        <input type="text"name="nome" value="<?php echo $_GET['nome']; ?>"class="form-control">
                     </div>
             </div>
             <div class="form-group row">
                 <label for="codigo" class="col-form-label col-xs-2">Codigo da função</label>
                     <div class="col-xs-10">
-                        <input type="text" name="codigo" id="codigo" placeholder="Preencher com 4 digitos numericos" class="form-control">
+                        <input type="text" name="codigo" readonly value="<?php echo $_GET['codigo']; ?>"class="form-control">
                     </div>
             </div>
             <div class="form-group col-xs-2">
@@ -133,22 +125,11 @@ if(!isset($_SESSION["nomeusuario"])){
                             
                             codigo: {
                                 required: true,
-                                
+                                number:true,
                                 maxlength: 50,
                                 minlength: 1,
                                 
-                                 "remote":
-                                    {
-                                        url: '../../controller/ModuloController.php?acao=validarcodigo',
-                                        type: "post",
-                                        data:
-                                        {
-                                            email: function()
-                                            {
-                                                return $('#register-form :input[name="codigo"]').val();
-                                            }   
-                                        }
-                                }
+                                
                         }
                               
 
@@ -163,10 +144,10 @@ if(!isset($_SESSION["nomeusuario"])){
                             
                             codigo: {
                                 required:"Preenchimento obrigatório!",
+                                number:"Preencher apenas com numeros!",
+                                maxlength:"Deve conter no máximo 50 caracteres!",
+                                minlength:"Deve conter no minimo 1 caracteres!",
                                 
-                                maxlength:"Deve conter no máximo 4 caracteres!",
-                                minlength:"Deve conter no minimo 4 caracteres!",
-                                remote:"codigo já cadastrado"
                             }
                                                     
 
@@ -175,14 +156,7 @@ if(!isset($_SESSION["nomeusuario"])){
                     });
 
                 });
-                
-                </script> 
-        <script>
-        $(function () {
-                        $("#codigo").mask("9999");
-                        
-                    });
-        </script>
+                </script>     
             
             
             

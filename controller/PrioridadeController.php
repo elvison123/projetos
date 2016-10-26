@@ -19,7 +19,7 @@ class PrioridadeController {
             }
             if ($acao === "buscartodos"){
                 
-                $this->listarTodos("mostrar")
+                $this->listarTodos("mostrar");
             }
         } catch (Exception $ex) {
             

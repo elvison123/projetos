@@ -29,7 +29,7 @@ if(!isset($_SESSION["nomeusuario"])){
                                                     aria-expanded="false"> Clientes <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="cadastrar-cliente.php">Cadastrar Clientes</a></li>
+                <li><a href="../clientes/cadastrar-cliente.php">Cadastrar Clientes</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/ClienteController.php?acao=buscartodos" >Mostrar Clientes Cadastrados</a></li>
                 <li role="separator" class="divider"></li>
@@ -55,7 +55,19 @@ if(!isset($_SESSION["nomeusuario"])){
                 
 
             </ul></li>
-              <ul class="nav navbar-nav navbar-right">
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                    aria-expanded="false"> Chamados <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Modulos</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                
+
+            </ul></li>
+            
+            <ul class="nav navbar-nav navbar-right">
             
             <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><?php  if (isset($_SESSION['nomeusuario'])){echo "Olá, " . $_SESSION["nomeusuario"];}; ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -91,12 +103,12 @@ if(!isset($_SESSION["nomeusuario"])){
                 <tr class="info">
                 <td><strong>ID</strong></td>
                 <td><strong>NOME</strong></td>
+                <td><strong>login</strong></td>
                 <td><strong>EMAIL</strong></td>
                 <td><strong>TELEFONE</strong></td>
                 <td><strong>CPF</strong></td>
                 <td><strong>EMPRESA</strong></td>
                 <td><strong>ENDEREÇO</strong></td>
-                <td><strong>SENHA</strong></td>
                 <td><strong>DELETAR</strong></td>
                 <td><strong>EDITAR</strong></td>
                                
@@ -106,20 +118,21 @@ if(!isset($_SESSION["nomeusuario"])){
             
             <?php if (isset($_SESSION["clientes1"])){foreach ($_SESSION["clientes1"] as $clientes):?>     
             <tbody>        
-            <tr> 
+                <tr>
                 <td><?php echo $clientes["id_cliente"];?></td>
                 <td><?php echo $clientes["nome"];?></td>
+                <td><?php echo $clientes["login"];?></td>
                 <td><?php echo $clientes["email"];?></td>
                 <td><?php echo $clientes["telefone"];?></td>
                 <td><?php echo $clientes["cpf"];?></td>
                 <td><?php echo $clientes["empresa"];?></td>
                 <td><?php echo $clientes["endereco"];?></td>
-                <td><?php echo $clientes["senha"];?></td>
+                
                 <td><button class="delete btn btn-danger" data-nome ="<?php echo $clientes["nome"]; ?>" data-id="<?php echo $clientes["id_cliente"]; ?>"data-target="#myModal">Excluir</td>
                 
                 <td><a class="btn btn-default" href="editar-cliente.php?id_cliente=<?php echo $clientes["id_cliente"];?>&nome=<?php echo $clientes['nome'];?>&email=<?php echo $clientes["email"];?>
                        &telefone=<?php echo $clientes["telefone"];?>&cpf=<?php echo $clientes["cpf"];?>&empresa=<?php echo $clientes["empresa"];?>&
-                       endereco=<?php echo $clientes["endereco"];?>&senha=<?php echo $clientes["senha"];?>" role="button">Editar</a></td>
+                       endereco=<?php echo $clientes["endereco"];?>&login=<?php echo $clientes["login"];?>&senha=<?php echo $clientes["senha"];?>" role="button">Editar</a></td>
             </tr>
             </tbody>
                     

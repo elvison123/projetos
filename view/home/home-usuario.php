@@ -4,9 +4,7 @@ if(!isset($_SESSION["nomeusuario"])){
     header('Location: LoginUsuario.php');
    
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -20,12 +18,12 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <!-- Bootstrap -->
+             <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
     </head>
     <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="../home.php">Home</a></li>
+        <li role="presentation" class="active"><a href="../home/home-usuario.php">Home</a></li>
         <!-- <li role="presentation"><a href="#">Messages</a></li>-->
         <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                                     aria-expanded="false"> Clientes <span class="caret"></span>
@@ -57,7 +55,19 @@ if(!isset($_SESSION["nomeusuario"])){
                 
 
             </ul></li>
-        <ul class="nav navbar-nav navbar-right">
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                    aria-expanded="false"> Chamados <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Modulos</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                
+
+            </ul></li>
+            
+            <ul class="nav navbar-nav navbar-right">
             
             <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><?php  if (isset($_SESSION['nomeusuario'])){echo "Olá, " . $_SESSION["nomeusuario"];}; ?><b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -69,8 +79,7 @@ if(!isset($_SESSION["nomeusuario"])){
             </li>
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
-    </ul>    
-            
+    </ul> 
             
             
             

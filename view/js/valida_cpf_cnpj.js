@@ -41,8 +41,9 @@ function verifica_cpf_cnpj ( valor ) {
  @return string Os dígitos enviados concatenados com o último dígito
 */
 function calc_digitos_posicoes( digitos, posicoes = 10, soma_digitos = 0 ) {
+    
  
-    // Garante que o valor é uma string
+     // Garante que o valor é uma string
     digitos = digitos.toString();
  
     // Faz a soma dos dígitos com a posição
