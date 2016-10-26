@@ -103,12 +103,12 @@ if(!isset($_SESSION["nomeusuario"])){
                 <tr class="info">
                 <td><strong>ID</strong></td>
                 <td><strong>NOME</strong></td>
+                <td><strong>login</strong></td>
                 <td><strong>EMAIL</strong></td>
                 <td><strong>TELEFONE</strong></td>
                 <td><strong>CPF</strong></td>
                 <td><strong>EMPRESA</strong></td>
                 <td><strong>ENDEREÇO</strong></td>
-                <td><strong>SENHA</strong></td>
                 <td><strong>DELETAR</strong></td>
                 <td><strong>EDITAR</strong></td>
                                
@@ -118,20 +118,21 @@ if(!isset($_SESSION["nomeusuario"])){
             
             <?php if (isset($_SESSION["clientes1"])){foreach ($_SESSION["clientes1"] as $clientes):?>     
             <tbody>        
-            <tr> 
+                <tr>
                 <td><?php echo $clientes["id_cliente"];?></td>
                 <td><?php echo $clientes["nome"];?></td>
+                <td><?php echo $clientes["login"];?></td>
                 <td><?php echo $clientes["email"];?></td>
                 <td><?php echo $clientes["telefone"];?></td>
                 <td><?php echo $clientes["cpf"];?></td>
                 <td><?php echo $clientes["empresa"];?></td>
                 <td><?php echo $clientes["endereco"];?></td>
-                <td><?php echo $clientes["senha"];?></td>
+                
                 <td><button class="delete btn btn-danger" data-nome ="<?php echo $clientes["nome"]; ?>" data-id="<?php echo $clientes["id_cliente"]; ?>"data-target="#myModal">Excluir</td>
                 
                 <td><a class="btn btn-default" href="editar-cliente.php?id_cliente=<?php echo $clientes["id_cliente"];?>&nome=<?php echo $clientes['nome'];?>&email=<?php echo $clientes["email"];?>
                        &telefone=<?php echo $clientes["telefone"];?>&cpf=<?php echo $clientes["cpf"];?>&empresa=<?php echo $clientes["empresa"];?>&
-                       endereco=<?php echo $clientes["endereco"];?>&senha=<?php echo $clientes["senha"];?>" role="button">Editar</a></td>
+                       endereco=<?php echo $clientes["endereco"];?>&login=<?php echo $clientes["login"];?>&senha=<?php echo $clientes["senha"];?>" role="button">Editar</a></td>
             </tr>
             </tbody>
                     

@@ -131,7 +131,7 @@ class ClienteController {
             $this->cliente->setSenha($_GET["senha"]);
             $this->cliente->setId($_GET["id_cliente"]);
             $this->cliente->editarCliente();
-            $this->listarTodos(null);
+            $this->listarTodos("editar");
             }  catch (Exception $e){
                 echo $e->getMessage();
                 exit();

@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION["nomeusuario"])){
     header('Location: LoginUsuario.php');
-   
+  
 }
 ?>
 <!DOCTYPE html>
@@ -105,7 +105,7 @@ if(!isset($_SESSION["nomeusuario"])){
                         <td><strong>LOGIN</strong></td>
                         <td><strong>CPF</strong></td>
                         <td><strong>EMPRESA</strong></td>
-                        <td><strong>SENHA</strong></td>
+                        
                         <td><strong>DELETAR</strong></td>
                         <td><strong>EDITAR</strong></td>
 
@@ -124,7 +124,7 @@ if(!isset($_SESSION["nomeusuario"])){
                                 <td><?php echo $usuario["login"] ?></td>
                                 <td><?php echo $usuario["cpf"] ?></td>
                                 <td><?php echo $usuario["empresa"] ?></td>
-                                <td><?php echo $usuario["senha"] ?></td>
+                                
                                 <td><button class="delete btn btn-danger" data-nome ="<?php echo $usuario["nome"]; ?>" data-id="<?php echo $usuario["id_usuario"]; ?>"data-target="#myModal">Excluir</td>
                                 <td><a class="btn btn-default" href="editar-usuario.php?id_usuario=<?php echo $usuario["id_usuario"] ?>&nome=<?php echo $usuario["nome"] ?>&email=<?php echo $usuario["email"] ?>&login=<?php echo $usuario["login"] ?>&cpf=<?php echo $usuario["cpf"] ?>&empresa=<?php echo $usuario["empresa"] ?>&senha=<?php echo $usuario["senha"] ?>">Editar</a></td>
 
