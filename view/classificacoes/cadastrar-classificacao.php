@@ -90,82 +90,102 @@ if(!isset($_SESSION["nomeusuario"])){
         </ul>
     </ul>
 
-    
+
+
+
     <div class="container">
-        <?php if (!$_GET['status']==null) { ?>
-                <div class="alert alert-danger">
+        <?php if (isset($_GET['status'])) { ?>
+                <div class="alert alert-info">
                     <center><?php echo $_GET['status']; ?></center>
                 </div>
            
 
         <?php }; ?>
-        <h1>Listar funções do modulo</h1>
-        <div class="row col-xs-12">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <td>Codigo</td>
-                        <td>Modulo</td>
-                        <td>Função</td>
-                        <td class="danger">Deletar</td>
-                        <td class="danger">Editar</td>
-                    </tr>
-                </thead>
-                <?php if (isset($_SESSION["linhas"])){foreach ($_SESSION["linhas"] as $linha):?>   
-                <tbody>
-                    <tr>
-                        <td><?php echo $linha["codigo"]?></td>
-                        <td><?php echo $linha["nomeModulo"]?></td>
-                        <td><?php echo $linha["nome"]?></td>
-                        <td><a class="delete btn btn-danger" data-nome="<?php echo $linha["nome"]?>" data-id="<?php echo $linha["id_funcao"]?>"data-target="#myModal">Excluir</a></td>
-                        <td><a class="btn btn-default" href="../modulos/editar-funcao-modelo.php?codigo=<?php echo $linha["codigo"]?>&nomeModulo=<?php echo $linha["nomeModulo"]?>&nome=<?php echo $linha["nome"]?>&id_funcao=<?php echo $linha["id_funcao"]?>&id_modulo_fk=<?php echo $linha["id_modulo_fk"]?>">Editar</a></td>
-                            
-                    </tr>
-                </tbody>
-                <?php    
-                    endforeach;
-                }
-                ?>
-            </table>
-            <script>
-                $('.delete').on('click', function () {
-                    var nome = $(this).data('nome'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
-                    var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
-                    $('span.nome').text(nome); // inserir na o nome na pergunta de confirmação dentro da modal
-                    $('a.delete-yes').attr('href', '../../controller/FuncaoModuloController.php?acao=excluirfuncao&id_funcao=' + id); // mudar dinamicamente o link, href do botão confirmar da modal
-                    $('#myModal').modal('show'); // modal aparece
-                });
-            </script>
-            
-            
+        
+        
+    <div class="row">
+        <div class="col-xs-4">
+            <h1 class="h1">Cadastrar Classificações</h1>
         </div>
-        <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    </div>
+
+    <div class="container">
+        <form action="../../controller/ClassificacaoController.php" method="GET" id="formcad" onclick="" novalidate="" >
+            <input type="hidden" name="acao" value="cadastrar">
+
+            <div class="form-group row">
+                <label for="nome" class="col-xs-2 col-form-label"  >Nome da Classificação</label>
+                <div class="col-xs-8">
+                    <input type="name" class="form-control" name="nome"   id="nome" required maxlength="50" placeholder="Digite o nome do cliente">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-6">
+                <input class="btn btn-success" type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
+                </div>
+                <div class="col-xs-2">
+                    <a class="btn btn-default" href="../../controller/ClassificacaoController.php?acao=buscartodos">Exibir Cadastro</a>
+                </div>
+            </div>
+            </form>
+
+            </div>
+
+
+            <script>
+                $(document).ready(function () {
+                    $("#formcad").validate({
+                        rules: {
+                            nome: {
+                                required: true,
+                                minlength: 2
+
+                            }
+
+                        },
+                        messages: {
+                            nome: {
+                                required: "Preenchimento obrigatório!",
+                                minlength: "Deve conter no minimo 2 caracteres!"
+                            }
+
+                        }
+
+                    });
+
+                });
+                
+
+
+            </script>
+
+
+
+
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
+
+            <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Confirmar Ação</h4>
+                    <h4 class="modal-title">Modal Header</h4>
                 </div>
                 <div class="modal-body">
-                    Tem certeza que deseja excluir a função <strong><span class="nome"></span></strong>?
+                    <p>Some text in the modal.</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" type="button" class="btn btn-default delete-yes">Sim</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
+
         </div>
     </div>
-        
-            
-            
-        
-            
-            
-            
-            
-        </form> 
-        
-        
-</div>
+     
+
+
+
+</body>
+</html>

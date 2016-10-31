@@ -1,37 +1,30 @@
 <?php
 
 require_once '../model/Modulo.php';
-require_once '../model/FuncaoModulo.php';
+require_once '../controller/ClassificacaoController.php';
 
 class ModuloController {
 
     private $modulo;
-    private $funcaoModulo;
-
+    
     function __construct() {
         try {
             $this->modulo = new Modulo();
-            $this->funcaoModulo = new FuncaoModulo();
             $acao = isset($_GET["acao"]) ? $_GET["acao"] : null;
-            if ($acao == "cadastrarfuncao") {
-                $this->cadastrarFuncao();
+            if ($acao == "cadastrarmodulo") {
+                $this->cadastrarModulo();
             }
-            if ($acao == "paginafuncao") {
-                $this->listarModulos("cadastrarfuncao");
+            
+            if ($acao == "listarmodulo") {
+                $this->listarModulos("padrao");
             }
-            if ($acao == "listarfuncoes") {
-                $this->listarFuncoes("padrao");
+            if ($acao == "excluirmodulo") {
+                $this->deletarModuloPorId();
             }
-            if ($acao == "excluirfuncao") {
-                $this->deletarFuncaoPorId();
+            if ($acao == "editarmodulo") {
+                $this->atualizarModulo();
             }
-            if ($acao == "editarfuncao") {
-                $this->atualizarFuncao();
-            }
-            if($acao == "validarcodigo"){
-                $this->validarCodigo();
-                
-            }
+            
             if ($acao == null) {
                 echo "acao nao definido";
             }
@@ -40,99 +33,78 @@ class ModuloController {
             exit();
         }
     }
-    function validarCodigo(){
-        $codigo = $_POST["codigo"];
-        if($this->funcaoModulo->validarCodigo($codigo)){
-            echo "true";
-        }else{
-            echo "false";
-        }
-    } 
-    
-                function deletarFuncaoPorId() {
+        
+    function deletarModuloPorId() {
         try {
-            $id = isset($_GET["id_funcao"]) ? $_GET["id_funcao"] : null;
-            $this->funcaoModulo->deletarPorId($id);
+            $id = isset($_GET["id_modulo"]) ? $_GET["id_modulo"] : null;
+            $this->modulo->deletarPorId($id);
             if ($id) {
                 echo "ok";
-                $this->listarFuncoes("apagar");
+                $this->listarModulos("apagar");
             }
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
     }
 
-    function listarFuncoes($acao) {
+    function listarModulos($acao) {
 
         try {
             if ($acao == "padrao") {
-                $linha = $this->funcaoModulo->listarTodos();
+                $linha = $this->modulo->listarTodos();
                 
                 session_start();
                 $_SESSION["linhas"] = $linha;
                 $mensagem=null;
             }
             elseif ($acao == "apagar") {
-                $linha = $this->funcaoModulo->listarTodos();
+                $linha = $this->modulo->listarTodos();
                 
                 session_start();
                 $_SESSION["linhas"] = $linha;
-                $mensagem = "A função<strong> " . $this->funcaoModulo->getFuncao() . " </strong>foi deletada.";
+                $mensagem = "O modulo <strong> " . $this->modulo->getNome() . " </strong>foi deletado.";
             }
         } catch (Exception $ex) {
             echo $ex->getMessage();
             exit();
         }
         
-        header("Location: ../view/modulos/listar-funcao-modulo.php?status=".$mensagem);
+        header("Location: ../view/modulos/listar-modulo.php?status=".$mensagem);
+        
     }
+    
 
-    function listarModulos($parametro) {
-        try {
-            if ($parametro == "cadastrarfuncao") {
-                $modulos = $this->modulo->listarModulos();
-                session_start();
-                $_SESSION["modulos"] = $modulos;
-            } else {
-                echo "paramentor nao informado em listarModulos";
-            }
-        } catch (Exception $ex) {
-            echo $ex->getMessage();
-            exit();
-        }
-        header("Location: ../view/modulos/cadastar-funcao-modulo.php");
-    }
+    
 
-    function atualizarFuncao() {
+    function atualizarModulo() {
         try {
-            $id = isset($_GET["funcaoid"]) ? $_GET["funcaoid"] : null;
-            $this->funcaoModulo->setFuncao(isset($_GET["nome"]) ? $_GET["nome"] : null);
-            $this->funcaoModulo->setCodigo(isset($_GET["codigo"]) ? $_GET["codigo"] : null);
-            $this->funcaoModulo->setModulofk(isset($_GET["moduloid"]) ? $_GET["moduloid"] : null);
-            $this->funcaoModulo->editarFuncao($id);
-            $this->listarFuncoes("padrao");
+            $id = isset($_GET["moduloid"]) ? $_GET["moduloid"] : null;
+            $this->modulo->setNome(isset($_GET["nome"]) ? $_GET["nome"] : null);
+            $this->modulo->setClassificacaofk(isset($_GET["classificacaoid"]) ? $_GET["classificacaoid"] : null);
+            $this->modulo->editarModulos($id);
+            $this->listarModulos("padrao");
         } catch (Exception $ex) {
             echo $ex->getMessage();
             exit();
         }
     }
 
-    function cadastrarFuncao() {
+    function cadastrarModulo() {
         try {
 
-            $this->funcaoModulo->setFuncao(isset($_GET["nome"]) ? $_GET["nome"] : null);
-            $this->funcaoModulo->setCodigo(isset($_GET["codigo"]) ? $_GET["codigo"] : null);
-            $this->funcaoModulo->setModulofk(isset($_GET["moduloid"]) ? $_GET["moduloid"] : null);
-            $this->funcaoModulo->cadastrarFuncao();
-            $this->listarFuncoes("padrao");
-            $nome = $this->funcaoModulo->getFuncao();
+            $this->modulo->setNome(isset($_GET["nome"]) ? $_GET["nome"] : null);
+            $this->modulo->setClassificacaofk(isset($_GET["classificacaoid"]) ? $_GET["classificacaoid"] : null);
+            $this->modulo->cadastrarModulos();
+            $this->listarModulos("padrao");
+            $nome = $this->modulo->getNome();
 
-            $mensagem = "A função <strong> " . $nome . " </strong>foi cadastrada";
+            $mensagem = "O modulo <strong> " . $nome . " </strong>foi cadastrada";
         } catch (Exception $ex) {
             echo $ex->getMessage();
             exit();
         }
-        header("Location: ../view/modulos/cadastar-funcao-modulo.php?status=" . $mensagem);
+        header("Location: ../view/modulos/cadastrar-modulo.php?status=" . $mensagem);
+        
     }
 
 }

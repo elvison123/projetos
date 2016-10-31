@@ -18,7 +18,7 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/valida_cpf_cnpj.js"></script>
+        <!--<script src="../js/valida_cpf_cnpj.js"></script>-->
         <script src="../js/exemplo_1.js"></script>
         <script src="../js/exemplo_2.js"></script>     
         <script src="../js/exemplo_3.js"></script> 
@@ -63,7 +63,12 @@ if(!isset($_SESSION["nomeusuario"])){
                                                     aria-expanded="false"> Chamados <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">Modulos</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/classificacoes/cadastrar-classificacao.php">Cadastrar Classificação</a></li>
+                <li><a href="../../controller/ClassificacaoController.php?acao=buscartodos">Listar Classificacoes Cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>

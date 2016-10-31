@@ -99,14 +99,14 @@ if(!isset($_SESSION["nomeusuario"])){
            
 
         <?php }; ?>
-        <h1>Listar funções do modulo</h1>
+        <h1>Listar modulos da classificação</h1>
         <div class="row col-xs-12">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <td>Codigo</td>
+                        <td>ID</td>
+                        <td>Classificação</td>
                         <td>Modulo</td>
-                        <td>Função</td>
                         <td class="danger">Deletar</td>
                         <td class="danger">Editar</td>
                     </tr>
@@ -114,11 +114,11 @@ if(!isset($_SESSION["nomeusuario"])){
                 <?php if (isset($_SESSION["linhas"])){foreach ($_SESSION["linhas"] as $linha):?>   
                 <tbody>
                     <tr>
-                        <td><?php echo $linha["codigo"]?></td>
-                        <td><?php echo $linha["nomeModulo"]?></td>
+                        <td><?php echo $linha["id_modulo"]?></td>
                         <td><?php echo $linha["nome"]?></td>
-                        <td><a class="delete btn btn-danger" data-nome="<?php echo $linha["nome"]?>" data-id="<?php echo $linha["id_funcao"]?>"data-target="#myModal">Excluir</a></td>
-                        <td><a class="btn btn-default" href="../modulos/editar-funcao-modelo.php?codigo=<?php echo $linha["codigo"]?>&nomeModulo=<?php echo $linha["nomeModulo"]?>&nome=<?php echo $linha["nome"]?>&id_funcao=<?php echo $linha["id_funcao"]?>&id_modulo_fk=<?php echo $linha["id_modulo_fk"]?>">Editar</a></td>
+                        <td><?php echo $linha["nomeModulo"]?></td>
+                        <td><a class="delete btn btn-danger" data-nome="<?php echo $linha["nomeModulo"]?>" data-id="<?php echo $linha["id_modulo"]?>"data-target="#myModal">Excluir</a></td>
+                        <td><a class="btn btn-default" href="../modulos/editar-modulo.php?classificacaofk=<?php echo $linha["id_classificacao_fk"]?>&nomeModulo=<?php echo $linha["nomeModulo"]?>&nomeClassificacao=<?php echo $linha["nome"]?>&id_modulo=<?php echo $linha["id_modulo"]?>">Editar</a></td>
                             
                     </tr>
                 </tbody>
@@ -132,7 +132,7 @@ if(!isset($_SESSION["nomeusuario"])){
                     var nome = $(this).data('nome'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
                     var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
                     $('span.nome').text(nome); // inserir na o nome na pergunta de confirmação dentro da modal
-                    $('a.delete-yes').attr('href', '../../controller/FuncaoModuloController.php?acao=excluirfuncao&id_funcao=' + id); // mudar dinamicamente o link, href do botão confirmar da modal
+                    $('a.delete-yes').attr('href', '../../controller/ModuloController.php?acao=excluirmodulo&id_modulo=' + id); // mudar dinamicamente o link, href do botão confirmar da modal
                     $('#myModal').modal('show'); // modal aparece
                 });
             </script>
@@ -148,7 +148,7 @@ if(!isset($_SESSION["nomeusuario"])){
                     <h4 class="modal-title">Confirmar Ação</h4>
                 </div>
                 <div class="modal-body">
-                    Tem certeza que deseja excluir a função <strong><span class="nome"></span></strong>?
+                    Tem certeza que deseja excluir o Modulo <strong><span class="nome"></span></strong>?
                 </div>
                 <div class="modal-footer">
                     <a href="#" type="button" class="btn btn-default delete-yes">Sim</a>
