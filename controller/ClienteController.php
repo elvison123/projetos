@@ -53,10 +53,8 @@ class ClienteController {
 		$this->cliente->setLogin($_GET["login"]);
                 $this->cliente->setSenha($_GET["senha"]);
                 
-		$this->cliente->cadastrarUsuario();
-                $nome = $this->cliente->getNome();
-                
-                $mensagem= "O usuario<strong> " .$nome." </strong>foi cadastrado";
+		$this->cliente->cadastrarCliente();
+                $mensagem= "O cliente <strong> " .$this->cliente->getNome()." </strong>foi cadastrado com sucesso!";
                 header("Location: ../view/clientes/cadastrar-cliente.php?status=".$mensagem);
 //                include '../../view/clientes/cadastrar-cliente.php';
             }  catch (Exception $e){
@@ -131,7 +129,7 @@ class ClienteController {
             $this->cliente->setSenha($_GET["senha"]);
             $this->cliente->setId($_GET["id_cliente"]);
             $this->cliente->editarCliente();
-            $this->listarTodos("editar");
+            $this->listarTodos(null);
             }  catch (Exception $e){
                 echo $e->getMessage();
                 exit();

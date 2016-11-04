@@ -10,7 +10,7 @@ $(function(){
         
         // Testa a validação
         if ( valida_cpf_cnpj( cpf_cnpj ) ) {
-            alert('CPF Válido!');
+//            alert('CPF Válido!');
         } else {
             alert('CPF Inválido!');
         }

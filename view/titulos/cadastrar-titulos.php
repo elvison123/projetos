@@ -18,11 +18,9 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <!--<script src="../js/valida_cpf_cnpj.js"></script>-->
-        <script src="../js/exemplo_1.js"></script>
-        <script src="../js/exemplo_2.js"></script>     
-        <script src="../js/exemplo_3.js"></script> 
-         <!-- Bootstrap -->
+        <script src="../js/jquery.maskMoney.js"></script>
+        <script src="../js/testa_data.js"></script>c
+        <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
     </head>
@@ -118,7 +116,7 @@ if(!isset($_SESSION["nomeusuario"])){
                 <div class="form-group row">
                     <label  for="valor" class="col-xs-2 col-form-label" >Valor Documento</label>
                     <div class="col-xs-10">
-                        <input type="text"class="form-control"  name="valor" id="valor"  required maxlength="20" placeholder="Digite o valor">
+                        <input type="text"class="form-control testa_data"  name="valor" id="valor"  required maxlength="14" placeholder="Digite o valor">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -254,7 +252,7 @@ $date = date('d/m/Y'); ?>
                                 },
                                 valor: {
                                     required: "Preenchimento obrigatório!!",
-                                    maxlength:"No maximo 20 caracteres"
+                                    maxlength:"No maximo 14 caracteres"
 
                                 },
                                 descricao: {
@@ -303,6 +301,8 @@ $date = date('d/m/Y'); ?>
                     $(function () {
                         $("#dataoperacao").mask("99/99/9999");
                         $("#datavencimento").mask("99/99/9999");
+                        $("$valor").maskMoney({symbol:'R$ ', 
+showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
                     });
                 </script>
                     

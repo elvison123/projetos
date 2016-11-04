@@ -32,13 +32,13 @@
                             <div class="form-group row">
                                 <label for="login" class="col-xs-offset-2 col-xs-2 col-form-label">Login</label>
                                 <div class="col-xs-5">
-                                    <input type="text" class="form-control"name="login" id="login" placeholder="digite o nome de acesso">
+                                    <input type="text" class="form-control"name="login" maxlength="20" id="login" placeholder="digite o nome de acesso">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="senha"class="col-xs-offset-2 col-xs-2 col-form-label">Senha</label>
                                 <div class="col-xs-5">
-                                    <input type="password" class="form-control" name="senha" id="senha" placeholder="digite a senha.">
+                                    <input type="password" class="form-control" name="senha" maxlength="20" id="senha" placeholder="digite a senha.">
 
                                 </div>
                             </div>

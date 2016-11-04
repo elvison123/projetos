@@ -177,7 +177,7 @@ if(!isset($_SESSION["nomeusuario"])){
 
             <div class="form-group row">
                 
-                <input class="center-block btn-success" type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
+                <input class="center-block cpf_cnpj btn-success " type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
 
 
 
