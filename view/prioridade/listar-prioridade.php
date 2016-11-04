@@ -18,10 +18,7 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <!--<script src="../js/valida_cpf_cnpj.js"></script>-->
-        <script src="../js/exemplo_1.js"></script>
-        <script src="../js/exemplo_2.js"></script>     
-        <script src="../js/exemplo_3.js"></script> 
+      
          <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
@@ -63,24 +60,10 @@ if(!isset($_SESSION["nomeusuario"])){
                                                     aria-expanded="false"> Chamados <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li role="separator" class="divider"></li>
-                <li><a href="../../view/classificacoes/cadastrar-classificacao.php">Cadastrar Classificação</a></li>
-                <li><a href="../../controller/ClassificacaoController.php?acao=buscartodos">Listar Classificacoes Cadastradas</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
-                <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
+                <li><a href="#">Modulos</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
-                
-
-            </ul></li>
-            
-            <ul class="dropdown-menu">
-                <li><a href="#">Prioridades</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="../../controller/PrioridadeController.php?acao=paginaprioridade">Cadastrar Prioridade</a></li>
-                <li><a href="../../controller/PrioridadeController.php?acao=listarfuncoes">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -98,38 +81,82 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
+    
+    <div class="container">
+        <?php if (!$_GET['status']==null) { ?>
+                <div class="alert alert-danger">
+                    <center><?php echo $_GET['status']; ?></center>
+                </div>
+           
 
+        <?php }; ?>
+        <h1>Cadastrar funções do modulo</h1>
+        <div class="row col-xs-12">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <td>Codigo</td>
+                        <td>Modulo</td>
+                        <td>Função</td>
+                        <td class="danger">Deletar</td>
+                        <td class="danger">Editar</td>
+                    </tr>
+                </thead>
+                <?php if (isset($_SESSION["linhas"])){foreach ($_SESSION["linhas"] as $linha):?>   
+                <tbody>
+                    <tr>
+                        <td><?php echo $linha["codigo"]?></td>
+                        <td><?php echo $linha["nomeModulo"]?></td>
+                        <td><?php echo $linha["nome"]?></td>
+                        <td><a class="delete btn btn-danger" data-nome="<?php echo $linha["nome"]?>" data-id="<?php echo $linha["id_funcao"]?>"data-target="#myModal">Excluir</a></td>
+                        <td><a class="btn btn-default" href="../modulos/editar-funcao-modelo.php?codigo=<?php echo $linha["codigo"]?>&nomeModulo=<?php echo $linha["nomeModulo"]?>&nome=<?php echo $linha["nome"]?>&id_funcao=<?php echo $linha["id_funcao"]?>&id_modulo_fk=<?php echo $linha["id_modulo_fk"]?>">Editar</a></td>
+                            
+                    </tr>
+                </tbody>
+                <?php    
+                    endforeach;
+                }
+                ?>
+            </table>
+            <script>
+                $('.delete').on('click', function () {
+                    var nome = $(this).data('nome'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
+                    var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
+                    $('span.nome').text(nome); // inserir na o nome na pergunta de confirmação dentro da modal
+                    $('a.delete-yes').attr('href', '../../controller/ModuloController.php?acao=excluirfuncao&id_funcao=' + id); // mudar dinamicamente o link, href do botão confirmar da modal
+                    $('#myModal').modal('show'); // modal aparece
+                });
+            </script>
             
             
-            <div class="container">
-                <h1>Chamados</h1>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                
-                
-                
+        </div>
+        <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirmar Ação</h4>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja excluir a função <strong><span class="nome"></span></strong>?
+                </div>
+                <div class="modal-footer">
+                    <a href="#" type="button" class="btn btn-default delete-yes">Sim</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-    </body>
-</html>
+        </div>
+    </div>
+        
+            
+            
+        
+            
+            
+            
+            
+        </form> 
+        
+        
+</div>

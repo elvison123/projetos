@@ -18,10 +18,7 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <!--<script src="../js/valida_cpf_cnpj.js"></script>-->
-        <script src="../js/exemplo_1.js"></script>
-        <script src="../js/exemplo_2.js"></script>     
-        <script src="../js/exemplo_3.js"></script> 
+      
          <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
@@ -63,24 +60,10 @@ if(!isset($_SESSION["nomeusuario"])){
                                                     aria-expanded="false"> Chamados <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li role="separator" class="divider"></li>
-                <li><a href="../../view/classificacoes/cadastrar-classificacao.php">Cadastrar Classificação</a></li>
-                <li><a href="../../controller/ClassificacaoController.php?acao=buscartodos">Listar Classificacoes Cadastradas</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
-                <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
+                <li><a href="#">Modulos</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
-                
-
-            </ul></li>
-            
-            <ul class="dropdown-menu">
-                <li><a href="#">Prioridades</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="../../controller/PrioridadeController.php?acao=paginaprioridade">Cadastrar Prioridade</a></li>
-                <li><a href="../../controller/PrioridadeController.php?acao=listarfuncoes">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -98,38 +81,87 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
-
-            
-            
-            <div class="container">
-                <h1>Chamados</h1>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                
-                
-                
+    <div class="container">
+        <h1>Cadastrar funções do modulo</h1>
+        <form action="../../controller/ModuloController.php" id="formcad" method="get">
+            <input type="hidden" value="editarfuncao" name="acao">
+            <input type="hidden" value="<?php echo $_GET['id_funcao']; ?>" name="funcaoid">
+            <div class="form-group row">
+                <label class="col-xs-2 col-form-label" for="modulo">Modulo</label>
+                <div class="col-xs-10">
+                    <select name="moduloid">
+                          
+                                    <option value="<?php echo $_GET['id_modulo_fk']; ?>"><?php echo $_GET['nomeModulo']; ?></option>
+                            
+                    </select>
+                </div>
             </div>
+            <div class="form-group row">
+                <label for="nome" class="col-form-label col-xs-2">Nome da função</label>
+                    <div class="col-xs-10">
+                        <input type="text"name="nome" value="<?php echo $_GET['nome']; ?>"class="form-control">
+                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="codigo" class="col-form-label col-xs-2">Codigo da função</label>
+                    <div class="col-xs-10">
+                        <input type="text" name="codigo" readonly value="<?php echo $_GET['codigo']; ?>"class="form-control">
+                    </div>
+            </div>
+            <div class="form-group col-xs-2">
+                <input class="btn btn-default" type="submit" value="Cadastrar">
+            </div>
+                <script>
+                $(document).ready(function () {
+                    $("#formcad").validate({
+                        rules: {
+                            nome: {
+                                required: true,
+                                maxlength:100,
+                                minlength: 1,
+                                
 
+                            },
+                            
+                            codigo: {
+                                required: true,
+                                number:true,
+                                maxlength: 50,
+                                minlength: 1,
+                                
+                                
+                        }
+                              
 
+                        },
+                        messages: {
+                            nome: {
+                                required: "Preenchimento obrigatório!",
+                                maxlength:"Deve conter no máximo 100 caracteres1",
+                                minlength:"Deve conter no minimo 1 caracteres!"
 
+                            },
+                            
+                            codigo: {
+                                required:"Preenchimento obrigatório!",
+                                number:"Preencher apenas com numeros!",
+                                maxlength:"Deve conter no máximo 50 caracteres!",
+                                minlength:"Deve conter no minimo 1 caracteres!",
+                                
+                            }
+                                                    
 
+                        }
 
+                    });
 
-
-
-
-
-    </body>
-</html>
+                });
+                </script>     
+            
+            
+            
+            
+        </form> 
+        
+        
+    </div>
