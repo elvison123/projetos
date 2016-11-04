@@ -80,7 +80,7 @@ class ClienteController {
                 $clientes1 = $this->cliente->listarTodosClintes();
                 session_start();
                 $_SESSION["clientes1"] = $clientes1;
-                $mensagem = "O cliente<strong> " . $this->cliente->getNome() . " </strong>tiveram seus dados alterados";
+                $mensagem = "O cliente<strong> " . $this->cliente->getNome() . " </strong>teve seus dados alterados";
                 header("Location: ../view/clientes/listar-cliente.php?status=" . $mensagem);
 //          include '../view/clientes/listar-cliente.php';
             }
@@ -129,7 +129,7 @@ class ClienteController {
             $this->cliente->setSenha($_GET["senha"]);
             $this->cliente->setId($_GET["id_cliente"]);
             $this->cliente->editarCliente();
-            $this->listarTodos(null);
+            $this->listarTodos("editar");
             }  catch (Exception $e){
                 echo $e->getMessage();
                 exit();
