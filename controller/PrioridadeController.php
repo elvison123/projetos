@@ -10,12 +10,10 @@ class PrioridadeController {
     function __construct() {
         try {
             $this->prioridade = new Prioridade();
-            $acao = isset($_GET["acao"]) ? $_GET["acao"] : null;
+            $acao = isset($_GET["acao"]) ? $_GET["acao"] : null;       
             
-            
-            
-            if ($acao == "cadastrarprioridade") {
-                $this->cadastrarPrioridade();
+            if ($acao == cadastrar) {
+                
             }
         
             if ($acao === "buscartodos"){
@@ -39,15 +37,16 @@ class PrioridadeController {
         }
     }
     
-    public function cadastrar(){
-        $this->prioridade->setDescricao($_GET['descricao']);
-        
-        $this->prioridade->cadastrarPrioridade();
-        $mensagem= "A prioridade <strong> " .$this->prioridade->getDescricao()." </strong> foi cadastrado com sucesso!";
-        header("Location: ../view/prioridade/cadastrar-prioridade.php?status=".$mensagem);
-    
-  
-    function listarTodos($pagina) {
+    function cadastrar(){
+        try{
+            $prioridade = $this->prioridade;
+            $prioridade->setNome(isset($_GET["nome"])?$_GET["nome"]:null);
+        } catch (Exception $ex) {
+
+      }
+    }
+       
+    function listatodasprioridades ($pagina) {
         try {
             if ($pagina == 'mostrartabelaprioridade'){
                 $prioridade = $this->prioridade->listarPrioridades();
@@ -109,5 +108,5 @@ class PrioridadeController {
     }
     
     
-    }   
+  
 

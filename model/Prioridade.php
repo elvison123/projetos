@@ -13,14 +13,14 @@ class Prioridade extends Banco {
         $this->descricao = $descricao;
     }
     
-    public function  listarPrioridades(){
-        try {
-            $db=$this->instancia();
-            $sql="SELECT * FROM prioridade";
-            $stmt=$db->prepare($sql);
+     public function cadastar(){
+        try{
+            $db=  $this->instancia();
+            $sql="INSERT INTO prioridade (descricao) VALUES (?)";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("1", $this->nome);
             $stmt->execute();
-            $linha = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $linha; 
+            
         } catch (Exception $ex) {
             echo $ex->getMessage();
             exit();
