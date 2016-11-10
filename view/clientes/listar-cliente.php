@@ -96,9 +96,13 @@ if(!isset($_SESSION["nomeusuario"])){
                 <div class="alert alert-info">
                     <center><?php echo $_GET['status']; ?></center>
                 </div>
-           
-
         <?php }; ?> 
+      
+      <?php if (!empty($_SESSION["mensagem"])): ?>
+        <div class="alert alert-danger">
+                    <center><?php echo $_SESSION["mensagem"]; unset($_SESSION["mensagem"]); ?></center>
+                </div>
+        <?php endif; ?>
          
       
     <div class="row">
@@ -107,6 +111,10 @@ if(!isset($_SESSION["nomeusuario"])){
         </div>
     </div>
     <div class="container">
+        
+        
+        
+        
         <table class="table table-bordered table-hover">
             
             <thead>

@@ -112,8 +112,10 @@ class ClienteController {
             $this->cliente->deletarPorId($id);
             $this->listarTodos("apagar");
         } catch (Exception $e) {
-            echo $e->getMessage();
-            exit();
+            //echo $e->getMessage();
+            session_start();
+                $_SESSION["mensagem"]  = "O cliente <strong> " . $this->cliente->getNome() . " </strong> possui titulos cadastrados.";
+                header("Location: /projetos/controller/ClienteController.php?acao=buscartodos");
         }
     }
 

@@ -82,28 +82,28 @@ if(!isset($_SESSION["nomeusuario"])){
         </ul>
     </ul>
     <div class="container">
-        <h1>Cadastrar funções do modulo</h1>
-        <form action="../../controller/ModuloController.php" id="formcad" method="get">
-            <input type="hidden" value="editarfuncao" name="acao">
-            <input type="hidden" value="<?php echo $_GET['id_funcao']; ?>" name="funcaoid">
+        <h1>Cadastrar Prioridade</h1>
+        <form action="../../controller/PrioridadeController.php" id="formcad" method="get">
+            <input type="hidden" value="editarprioridade" name="acao">
+            <input type="hidden" value="<?php echo $_GET['id_prioridade']; ?>" name="prioridadeid">
             <div class="form-group row">
-                <label class="col-xs-2 col-form-label" for="modulo">Modulo</label>
+                <label class="col-xs-2 col-form-label" for="prioridade">Prioridade</label>
                 <div class="col-xs-10">
-                    <select name="moduloid">
+                    <select name="prioridadeid">
                           
-                                    <option value="<?php echo $_GET['id_modulo_fk']; ?>"><?php echo $_GET['nomeModulo']; ?></option>
+                                    <option value="<?php echo $_GET['id_prioridade_fk']; ?>"><?php echo $_GET['nomePrioridade']; ?></option>
                             
                     </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="nome" class="col-form-label col-xs-2">Nome da função</label>
+                <label for="nome" class="col-form-label col-xs-2">Nome da Prioridade</label>
                     <div class="col-xs-10">
                         <input type="text"name="nome" value="<?php echo $_GET['nome']; ?>"class="form-control">
                     </div>
             </div>
             <div class="form-group row">
-                <label for="codigo" class="col-form-label col-xs-2">Codigo da função</label>
+                <label for="codigo" class="col-form-label col-xs-2">Codigo da Prioridade</label>
                     <div class="col-xs-10">
                         <input type="text" name="codigo" readonly value="<?php echo $_GET['codigo']; ?>"class="form-control">
                     </div>

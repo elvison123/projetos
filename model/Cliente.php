@@ -132,8 +132,7 @@ class Cliente extends Banco {
             $stmt->execute();
         } catch (Exception $e) {
 
-            echo $e->getMessage();
-            die();
+            throw $e;
         }
         echo "deletada linha $id";
     }

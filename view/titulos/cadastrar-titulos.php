@@ -19,7 +19,8 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery.maskMoney.js"></script>
-        <script src="../js/testa_data.js"></script>c
+        <script src="../js/exemplo_1.js"></script>
+        
         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
@@ -238,7 +239,8 @@ $date = date('d/m/Y'); ?>
                                 },
                                 datavencimento: {
                                     required: true,
-                                    maxlength:10
+                                    maxlength:10,
+                                    ValidarData:true
 
 
                                 }
@@ -286,7 +288,8 @@ $date = date('d/m/Y'); ?>
                                 },
                                 datavencimento: {
                                     required: "Preenchimento obrigatório!!",
-                                    maxlength:"No maximo 10 caracteres"
+                                    maxlength:"No maximo 10 caracteres",
+                                    ValidarData: "A data deve ser superior ou igual à data atual"
 
                                 }
 

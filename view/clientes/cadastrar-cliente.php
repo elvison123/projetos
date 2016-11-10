@@ -156,7 +156,7 @@ if(!isset($_SESSION["nomeusuario"])){
                 
                 <label  for="cpf" class="col-xs-2 col-form-label" >CPF:</label>
                 <div class="col-xs-8">
-
+    
                     <input  type="text"class="form-control cpf_cnpj" required maxlength="14"  name="cpf" id="cpf" placeholder="Digite o CPF">
                 </div>
             </div>
@@ -215,9 +215,10 @@ if(!isset($_SESSION["nomeusuario"])){
 
                             },
                             cpf: {
-                                required: true
+                                required: true,
 //                                minlength: 14,
-//                                maxlength: 14
+//                                maxlength: 14,
+                                ValidarCPF: true
 
                             },
                             empresa: {
@@ -256,7 +257,8 @@ if(!isset($_SESSION["nomeusuario"])){
 
                             },
                             cpf: {
-                                required: "Preenchimento obrigatório!!"
+                                required: "Preenchimento obrigatório!!",
+                                ValidarCPF: "CPF Inválido!"
 ////                                minlength: "Deve conter no minimo 14 caracteres.",
 //                                maxlength: "Deve conter no máximo 14 caracteres."
 //

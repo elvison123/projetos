@@ -31,7 +31,7 @@ class ClassificacaoController{
                 $this->editarClassificao();
             }
             else {
-                echo "acao nao informada";
+                echo "ação nao informada";
             }
         } catch (Exception $e) {
             var_dump($e->getMessage());
@@ -115,7 +115,7 @@ class ClassificacaoController{
             try{
             $this->classificacao->setNome($_GET["nome"]);
             $this->classificacao->setId($_GET["id_classificacao"]);
-            $this->classificacao->editariClassificacao();
+            $this->classificacao->editarClassificacao();
             $this->listarTodos("editar");
             }  catch (Exception $e){
                 echo $e->getMessage();

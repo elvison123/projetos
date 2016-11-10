@@ -1,4 +1,4 @@
-<?php // 
+<?php 
 session_start();
 if(!isset($_SESSION["nomeusuario"])){
     header('Location: LoginUsuario.php');
@@ -18,7 +18,10 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-      
+        <!--<script src="../js/valida_cpf_cnpj.js"></script>-->
+        <script src="../js/exemplo_1.js"></script>
+        <script src="../js/exemplo_2.js"></script>     
+        <script src="../js/exemplo_3.js"></script> 
          <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
@@ -60,10 +63,18 @@ if(!isset($_SESSION["nomeusuario"])){
                                                     aria-expanded="false"> Chamados <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#">Prioridades</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/PrioridadeController.php?acao=paginaprioridade">Cadastrar </a></li>
-                <li><a href="../../controller/PrioridadeController.php?acao=listarprioridade">Listar Prioridades Cadastradas</a></li>
+                <li><a href="../../view/classificacoes/cadastrar-classificacao.php">Cadastrar Classificação</a></li>
+                <li><a href="../../controller/ClassificacaoController.php?acao=buscartodos">Listar Classificacoes Cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar Função</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridades</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades cadastradas</a></li>
                 
 
             </ul></li>
@@ -81,7 +92,10 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
-    
+
+
+
+
     <div class="container">
         <?php if (isset($_GET['status'])) { ?>
                 <div class="alert alert-info">
@@ -90,85 +104,54 @@ if(!isset($_SESSION["nomeusuario"])){
            
 
         <?php }; ?>
-        <h1>Cadastrar funções do modulo</h1>
-        <form action="../../controller/ModuloController.php" id="formcad" method="get">
-            <input type="hidden" value="cadastrarfuncao" name="acao">
+        
+        
+    <div class="row">
+        <div class="col-xs-4">
+            <h1 class="h1">Cadastrar Prioridades</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <form action="../../controller/PrioridadeController.php" method="GET" id="formcad" onclick="" novalidate="" >
+            <input type="hidden" name="acao" value="cadastrar">
+
             <div class="form-group row">
-                <label class="col-xs-2 col-form-label" for="modulo">Modulo</label>
-                <div class="col-xs-10">
-                    <select name="moduloid">
-                         <?php session_start() ?>
-            <?php if (isset($_SESSION["modulos"])){foreach ($_SESSION["modulos"] as $modulos):?> 
-                                    <option value="<?php echo $modulos['id_modulo']; ?>"><?php echo $modulos['nomeModulo']; ?></option>
-                               <?php endforeach;}?> 
-                    </select>
+                <label for="nome" class="col-xs-2 col-form-label"  >Nome da Prioridade</label>
+                <div class="col-xs-8">
+                    <input type="name" class="form-control" name="nome"   id="nome" required maxlength="50" placeholder="Digite o Nome da Prioridade">
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="nome" class="col-form-label col-xs-2">Nome da função</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="nome" class="form-control">
-                    </div>
+            <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-6">
+                <input class="btn btn-success" type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
+                </div>
+                <div class="col-xs-2">
+                    <a class="btn btn-default" href="../../controller/PrioridadeController.php?acao=buscartodos">Exibir Cadastro</a>
+                </div>
             </div>
-            <div class="form-group row">
-                <label for="codigo" class="col-form-label col-xs-2">Codigo da função</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="codigo" id="codigo" placeholder="Preencher com 4 digitos numericos" class="form-control">
-                    </div>
+            </form>
+
             </div>
-            <div class="form-group col-xs-2">
-                <input class="btn btn-default" type="submit" value="Cadastrar">
-            </div>
-                <script>
+
+
+            <script>
                 $(document).ready(function () {
                     $("#formcad").validate({
                         rules: {
                             nome: {
                                 required: true,
-                                maxlength:100,
-                                minlength: 1,
-                                
+                                minlength: 2
 
-                            },
-                            
-                            codigo: {
-                                required: true,
-                                
-                                maxlength: 50,
-                                minlength: 1,
-                                
-                                 "remote":
-                                    {
-                                        url: '../../controller/ModuloController.php?acao=validarcodigo',
-                                        type: "post",
-                                        data:
-                                        {
-                                            email: function()
-                                            {
-                                                return $('#register-form :input[name="codigo"]').val();
-                                            }   
-                                        }
-                                }
-                        }
-                              
+                            }
 
                         },
                         messages: {
                             nome: {
                                 required: "Preenchimento obrigatório!",
-                                maxlength:"Deve conter no máximo 100 caracteres1",
-                                minlength:"Deve conter no minimo 1 caracteres!"
-
-                            },
-                            
-                            codigo: {
-                                required:"Preenchimento obrigatório!",
-                                
-                                maxlength:"Deve conter no máximo 4 caracteres!",
-                                minlength:"Deve conter no minimo 4 caracteres!",
-                                remote:"codigo já cadastrado"
+                                minlength: "Deve conter no minimo 2 caracteres!"
                             }
-                                                    
 
                         }
 
@@ -176,18 +159,36 @@ if(!isset($_SESSION["nomeusuario"])){
 
                 });
                 
-                </script> 
-        <script>
-        $(function () {
-                        $("#codigo").mask("9999");
-                        
-                    });
-        </script>
-            
-            
-            
-            
-        </form> 
-        
-        
+
+
+            </script>
+
+
+
+
     </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+     
+
+
+
+</body>
+</html>

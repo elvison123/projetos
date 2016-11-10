@@ -12,44 +12,58 @@ class PrioridadeController {
             $this->prioridade = new Prioridade();
             $acao = isset($_GET["acao"]) ? $_GET["acao"] : null;       
             
-            if ($acao == cadastrar) {
-                
+            if ($acao == "paginaprioridade") {
+                $this->listarTodos("cadastrarprioridade");
             }
         
-            if ($acao === "buscartodos"){
-                
+            if ($acao === "cadastrar"){
+                $this->cadastrar();
+            }
+            
+            if($acao == "buscartodos"){
                 $this->listarTodos("mostrartabelaprioridades");
             }
-            if ($acao == "listatodasprioridades"){
-                $this->listaTodos("prioridades");
+            
+            if ($acao == "listarprioridades"){
+                $this->listaTodos("prioridade");
             }
             if ($acao == "deletar"){
                 $this->deletarPrioridade();
             }
             if ($acao == "editar"){
-                $this->editarCliente();
+                $this->editarPrioridade();
             }
-            if ($acao == null){
-                
+            else { 
+                echo "ação não informada";
             }
-        } catch (Exception $ex) {
+                 
+          } catch (Exception $ex) {
             var_dump($e->getMessage());
         }
     }
     
-    function cadastrar(){
+    public function cadastrar(){
+        
         try{
-            $prioridade = $this->prioridade;
-            $prioridade->setNome(isset($_GET["nome"])?$_GET["nome"]:null);
-        } catch (Exception $ex) {
-
+            
+            
+            $this->prioridade->setNome($_GET["nome"]);
+            $this->prioridade->cadastarPrioridade();
+            $nome = $this->prioridade->getNome();
+            
+            $mensagem= "A Prioridade <strong> " .$nome." </strong> foi cadastrada";
+            header("Location: ../view/Prioridade/cadastrar-prioridade.php?status=".$mensagem);
+            
+        } catch (Exception $e) {
+            echo $e->getMessage();
+                exit();
       }
     }
        
-    function listatodasprioridades ($pagina) {
+    function listarTodos ($pagina) {
         try {
-            if ($pagina == 'mostrartabelaprioridade'){
-                $prioridade = $this->prioridade->listarPrioridades();
+            if ($pagina == 'mostrartabelaprioridades'){
+                $prioridade = $this->prioridade->listarTodos();
                 session_start();
                 $_SESSION ["prioridade"] = $prioridade;
                 header ("Location: ../view/prioridade/listar-prioridade.php");
@@ -58,7 +72,7 @@ class PrioridadeController {
                 $prioridade = $this->prioridade->listarPrioridades();
                 session_start();
                 $_SESSION["prioridade"] = $prioridade;
-                $mensagem = "A prioridade<strong> " . $this->prioridade->getDescricao() . " </strong> teve seus dados alterados";
+                $mensagem = "A prioridade<strong> " . $this->prioridade->getNome() . " </strong> teve seus dados alterados";
                 header("Location: ../view/prioridade/listar-prioridade.php?status=" . $mensagem);
                 }
                 elseif ($pagina == "apagar") {
@@ -68,7 +82,7 @@ class PrioridadeController {
                 $mensagem = "A prioridade<strong> " . $this->prioridade->getPrioridade() . " </strong>foi deletada.";
                 header("Location: ../view/prioridade/listar-prioridade.php?status=" . $mensagem);
             } 
-            elseif ($pagina == "titulos") {            
+            elseif ($pagina == "cadastrarprioridade") {            
         
                 $prioridade = $this->prioridade->listarPrioridades();
                 session_start();
@@ -94,19 +108,22 @@ class PrioridadeController {
 
     function editarPrioridade(){
             try{
-            $this->prioridade->setDescricao($_GET["descricao"]);
+            $this->prioridade->setNome($_GET["nome"]);
+            $this->prioridade->setId($_GET["id_classificacao"]);
+            $this->prioridade->listarTodos("editar");
             
             }  catch (Exception $e){
                 echo $e->getMessage();
                 exit();
             }
-    }
+    }   
                 
-                
-                
-        } 
+        }
+        
+        
     }
     
+    new PrioridadeController();
     
   
 

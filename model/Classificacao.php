@@ -62,7 +62,7 @@ class Classificacao extends Banco{
         echo "deletada linha $id";
     }
 
-    public function editariClassificacao() {
+    public function editarClassificacao() {
 
         try {
             $db = $this->instancia();

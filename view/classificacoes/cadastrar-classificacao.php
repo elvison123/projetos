@@ -116,7 +116,7 @@ if(!isset($_SESSION["nomeusuario"])){
             <div class="form-group row">
                 <label for="nome" class="col-xs-2 col-form-label"  >Nome da Classificação</label>
                 <div class="col-xs-8">
-                    <input type="name" class="form-control" name="nome"   id="nome" required maxlength="50" placeholder="Digite o nome do cliente">
+                    <input type="name" class="form-control" name="nome"   id="nome" required maxlength="50" placeholder="Digite o Nome da Classificação">
                 </div>
             </div>
             <div class="row">
