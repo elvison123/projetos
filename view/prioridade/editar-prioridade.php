@@ -81,36 +81,35 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
-    <div class="container">
-        <h1>Cadastrar Prioridade</h1>
-        <form action="../../controller/PrioridadeController.php" id="formcad" method="get">
-            <input type="hidden" value="editarprioridade" name="acao">
-            <input type="hidden" value="<?php echo $_GET['id_prioridade']; ?>" name="prioridadeid">
-            <div class="form-group row">
-                <label class="col-xs-2 col-form-label" for="prioridade">Prioridade</label>
-                <div class="col-xs-10">
-                    <select name="prioridadeid">
-                          
-                                    <option value="<?php echo $_GET['id_prioridade_fk']; ?>"><?php echo $_GET['nomePrioridade']; ?></option>
-                            
-                    </select>
+   <div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+            <h1 class="h1">Editar Prioridade</h1>
+        </div>
+    </div>
+    <form action="../../controller/PrioridadeController.php" method="GET" id="formcad" novalidate="">
+		<input type="hidden" name="acao" value="editar">
+                <input type="hidden" name="id_prioridade" value="<?php echo ltrim($_GET['id_prioridade']);?>" >
+		
+                <div class="form-group row">
+			<label for="nome" class="col-xs-2 col-form-label">Nome da Prioridade</label> 
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="nome" id="nome" required maxlength="50" value="<?php echo ltrim($_GET["nome"]);?>" placeholder="Digite o nome da Prioridade">
+			</div>
                 </div>
+        	<div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-6">
+                <input class="btn btn-success" type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
+                </div>
+               
             </div>
-            <div class="form-group row">
-                <label for="nome" class="col-form-label col-xs-2">Nome da Prioridade</label>
-                    <div class="col-xs-10">
-                        <input type="text"name="nome" value="<?php echo $_GET['nome']; ?>"class="form-control">
-                    </div>
+
+
+	</form>
+</div>
             </div>
-            <div class="form-group row">
-                <label for="codigo" class="col-form-label col-xs-2">Codigo da Prioridade</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="codigo" readonly value="<?php echo $_GET['codigo']; ?>"class="form-control">
-                    </div>
-            </div>
-            <div class="form-group col-xs-2">
-                <input class="btn btn-default" type="submit" value="Cadastrar">
-            </div>
+            
                 <script>
                 $(document).ready(function () {
                     $("#formcad").validate({

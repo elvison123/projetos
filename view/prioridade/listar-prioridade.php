@@ -52,7 +52,7 @@ if(!isset($_SESSION["nomeusuario"])){
             <ul class="dropdown-menu">
                 <li><a href="../usuarios/cadastrar-usuario.php">Cadastrar Usuários</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/UsuarioController.php?acao=listarusuarios"> Mostrar todos os Usuários cadastrados</a></li>
+                <li><a href="../../controller/UsuarioController.php?acao=listarusuarios"> Mostrar Usuários Cadastrados</a></li>
                 
 
             </ul></li>
@@ -62,8 +62,8 @@ if(!isset($_SESSION["nomeusuario"])){
             <ul class="dropdown-menu">
                 <li><a href="#">Modulos</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
-                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar Função</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções Cadastradas</a></li>
                 
 
             </ul></li>
@@ -90,27 +90,26 @@ if(!isset($_SESSION["nomeusuario"])){
            
 
         <?php }; ?>
-        <h1>Cadastrar funções do modulo</h1>
+        <h1>Listar Prioridades</h1>
         <div class="row col-xs-12">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <td>Codigo</td>
-                        <td>Modulo</td>
-                        <td>Função</td>
-                        <td class="danger">Deletar</td>
-                        <td class="danger">Editar</td>
+                        <td>ID</td>
+                        <td><strong>NOME DA PRIORIDADE</strong></td>
+                        <td><strong>DELETAR<strong></td>
+                        <td><strong>EDITAR<strong></td>
+                        
                     </tr>
                 </thead>
-                <?php if (isset($_SESSION["linhas"])){foreach ($_SESSION["linhas"] as $linha):?>   
+                <?php if (isset($_SESSION["prioridade"])){foreach ($_SESSION["prioridade"] as $linha):?>   
                 <tbody>
                     <tr>
-                        <td><?php echo $linha["codigo"]?></td>
-                        <td><?php echo $linha["nomeModulo"]?></td>
-                        <td><?php echo $linha["nome"]?></td>
-                        <td><a class="delete btn btn-danger" data-nome="<?php echo $linha["nome"]?>" data-id="<?php echo $linha["id_funcao"]?>"data-target="#myModal">Excluir</a></td>
-                        <td><a class="btn btn-default" href="../modulos/editar-funcao-modelo.php?codigo=<?php echo $linha["codigo"]?>&nomeModulo=<?php echo $linha["nomeModulo"]?>&nome=<?php echo $linha["nome"]?>&id_funcao=<?php echo $linha["id_funcao"]?>&id_modulo_fk=<?php echo $linha["id_modulo_fk"]?>">Editar</a></td>
-                            
+                        <td><?php echo $linha["id_prioridade"];?></td>
+                        <td><?php echo $linha["nome"];?></td>
+                        <td><button class="delete btn btn-danger" data-nome ="<?php echo $linha["nome"]; ?>" data-id="<?php echo $linha["id_prioridade"]; ?>"data-target="#myModal">Excluir</td>
+                    <td><a class="btn btn-default" href="editar-prioridade.php?id_prioridade=<?php echo $linha["id_prioridade"];?>&nome=<?php echo $linha["nome"];?>" role="button">Editar</a></td>
+                        
                     </tr>
                 </tbody>
                 <?php    
@@ -123,7 +122,7 @@ if(!isset($_SESSION["nomeusuario"])){
                     var nome = $(this).data('nome'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
                     var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
                     $('span.nome').text(nome); // inserir na o nome na pergunta de confirmação dentro da modal
-                    $('a.delete-yes').attr('href', '../../controller/ModuloController.php?acao=excluirfuncao&id_funcao=' + id); // mudar dinamicamente o link, href do botão confirmar da modal
+                    $('a.delete-yes').attr('href', '../../controller/PrioridadeController.php?acao=deletar&id=' + id); // mudar dinamicamente o link, href do botão confirmar da modal
                     $('#myModal').modal('show'); // modal aparece
                 });
             </script>

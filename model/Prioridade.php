@@ -71,7 +71,7 @@ class Prioridade extends Banco {
 
         try {
             $db = $this->instancia();
-            $stmt = $db->prepare("UPDATE prioridade SET nome= ? WHERE id_classificacao= ?");
+            $stmt = $db->prepare("UPDATE prioridade SET nome= ? WHERE id_prioridade= ?");
             $stmt->bindParam("1", $this->nome);
             $stmt->bindParam("2", $this->id);
             $stmt->execute();

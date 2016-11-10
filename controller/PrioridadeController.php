@@ -28,6 +28,7 @@ class PrioridadeController {
                 $this->listaTodos("prioridade");
             }
             if ($acao == "deletar"){
+                var_dump($_GET["id"]);
                 $this->deletarPrioridade();
             }
             if ($acao == "editar"){

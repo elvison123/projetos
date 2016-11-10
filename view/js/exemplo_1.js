@@ -26,7 +26,7 @@ $(function(){
             // Valida
             //var valida = valida_cpf_cnpj( cpf_cnpj );
             
-            // Testa a validação
+            // Testa a validaçãofff
 //            if ( valida ) {
 //                input.addClass('valido');
 //            } else {

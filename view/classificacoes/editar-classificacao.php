@@ -103,7 +103,7 @@ if(!isset($_SESSION["nomeusuario"])){
                 <input type="hidden" name="id_classificacao" value="<?php echo ltrim($_GET['id_classificacao']);?>" >
 		
                 <div class="form-group row">
-			<label for="nome" class="col-xs-2 col-form-label">Nome completo</label> 
+			<label for="nome" class="col-xs-2 col-form-label">Nome da Classificação</label> 
                         <div class="col-xs-8">
                             <input type="text" class="form-control" name="nome" id="nome" required maxlength="50" value="<?php echo ltrim($_GET["nome"]);?>" placeholder="Digite o nome do cliente">
 			</div>
