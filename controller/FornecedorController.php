@@ -109,8 +109,11 @@ class FornecedorController {
             $this->fornecedor->deletarPorId($id);
             $this->listarTodos("apagar");
         } catch (Exception $e) {
-            echo $e->getMessage();
-            exit();
+//            echo $e->getMessage();
+            session_start();
+                $_SESSION["mensagem"]  = "O cliente <strong> " . $this->fornecedor->getNome() . " </strong> possui titulos cadastrados.";
+                header("Location: ../view/fornecedores/listar-fornecedor.php?acao=buscartodos");
+            
         }
     }
 

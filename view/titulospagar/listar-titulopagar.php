@@ -1,9 +1,9 @@
 <?php 
 session_start();
-//if(!isset($_SESSION["nomeusuario"])){
-//    header('Location: LoginUsuario.php');
-//   
-//}
+if(!isset($_SESSION["nomeusuario"])){
+    header('Location: LoginUsuario.php');
+   
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,7 +11,7 @@ session_start();
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home</title>
+        <title>Listar</title>
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
 <!--        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>-->        
         <script src="../js/jquery-3.1.0.min.js"></script>
@@ -39,7 +39,17 @@ session_start();
                 <li role="separator" class="divider"></li>
 
             </ul></li>
-           <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                    aria-expanded="false"> Fornecedores <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="../fornecedores/cadastrar-fornecedor.php">Cadastrar Fornecedores</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/FornecedorController.php?acao=buscartodos" >Mostrar Fornecedores Cadastrados</a></li>
+                <li role="separator" class="divider"></li>
+
+            </ul></li>
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                                     aria-expanded="false"> Títulos <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -72,8 +82,8 @@ session_start();
                 <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
                 <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
-                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
                 
 
             </ul></li>
@@ -95,6 +105,13 @@ session_start();
 
 
 <div class="container">
+    <?php if (isset($_GET['status'])) { ?>
+                <div class="alert alert-info">
+                    <center><?php echo $_GET['status']; ?></center>
+                </div>
+           
+
+        <?php }; ?>
     <div class="row">
         <div class="">
             <h1 class="h1 col-xs-5">Listar Títulos </h1>

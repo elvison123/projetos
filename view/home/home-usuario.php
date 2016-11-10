@@ -40,12 +40,24 @@ if(!isset($_SESSION["nomeusuario"])){
 
             </ul></li>
             <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                    aria-expanded="false"> Fornecedores <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="../fornecedores/cadastrar-fornecedor.php">Cadastrar Fornecedores</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/FornecedorController.php?acao=buscartodos" >Mostrar Fornecedores Cadastrados</a></li>
+                <li role="separator" class="divider"></li>
+
+            </ul></li>
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                                                     aria-expanded="false"> Títulos <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
                 <li><a href="../../controller/TituloController.php?acao=listarclientes">Cadastrar Títulos a receber</a></li>
+                <li><a href="../../controller/TituloController.php?acao=listartitulos"> Mostrar todos os títulos a receber</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/TituloController.php?acao=listartitulos"> Mostrar todos os títulos cadastrados</a></li>
+                <li><a href="../../controller/TituloPagarController.php?acao=listarfornecedor">Cadastrar Títulos a pagar</a></li>
+                <li><a href="../../controller/TituloPagarController.php?acao=listartitulos"> Mostrar todos os títulos a pagar</a></li>
                 
 
             </ul></li>
@@ -70,10 +82,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
                 <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
-                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
-                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
-                <li><a href="../../controller/PrioridadeController.php?acao=listarprioridades">Listar Prioridades Cadastradas</a></li>
+                <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                
 
             </ul></li>
             
@@ -90,7 +101,6 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
-
             
             
             <div class="container">

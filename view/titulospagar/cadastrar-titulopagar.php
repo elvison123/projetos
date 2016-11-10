@@ -1,9 +1,9 @@
 <?php 
 session_start();
-//if(!isset($_SESSION["nomeusuario"])){
-//    header('Location: LoginUsuario.php');
-//   
-//}
+if(!isset($_SESSION["nomeusuario"])){
+    header('Location: LoginUsuario.php');
+   
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,7 +11,7 @@ session_start();
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home</title>
+        <title>Cadastrar</title>
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
 <!--        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>-->        
         <script src="../js/jquery-3.1.0.min.js"></script>
@@ -19,12 +19,14 @@ session_start();
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/jquery.maskMoney.js"></script>
-        <script src="../js/testa_data.js"></script>c
+        <script src="../js/testa_data.js"></script>
+        <script src="../js/exemplo_1.js"></script>
+        
         <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
     </head>
-    <ul class="nav nav-pills">
+   <ul class="nav nav-pills">
         <li role="presentation" class="active"><a href="../home/home-usuario.php">Home</a></li>
         <!-- <li role="presentation"><a href="#">Messages</a></li>-->
         <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -34,6 +36,16 @@ session_start();
                 <li><a href="../clientes/cadastrar-cliente.php">Cadastrar Clientes</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/ClienteController.php?acao=buscartodos" >Mostrar Clientes Cadastrados</a></li>
+                <li role="separator" class="divider"></li>
+
+            </ul></li>
+            <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                                    aria-expanded="false"> Fornecedores <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="../fornecedores/cadastrar-fornecedor.php">Cadastrar Fornecedores</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/FornecedorController.php?acao=buscartodos" >Mostrar Fornecedores Cadastrados</a></li>
                 <li role="separator" class="divider"></li>
 
             </ul></li>
@@ -70,8 +82,8 @@ session_start();
                 <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
                 <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
-                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
                 
 
             </ul></li>
@@ -92,6 +104,13 @@ session_start();
 
 
 <div class="container">
+    <?php if (isset($_GET['status'])) { ?>
+                <div class="alert alert-info">
+                    <center><?php echo $_GET['status']; ?></center>
+                </div>
+           
+
+        <?php }; ?>
     <div class="row">
         <div class="col-xs-4">
             <h1 class="h1">Cadastrar Títulos a Pagar </h1>
@@ -179,15 +198,18 @@ $date = date('d/m/Y'); ?>
 
 
 
-                <div class="form-group row">
-
-                    <input class="center-block btn-success" type="submit">
-
-
-
-                    </form>
-
+                <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-6">
+                <input class="btn btn-success" type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
                 </div>
+                <div class="col-xs-2">
+                    <a class="btn btn-default" href="../../controller/TituloPagarController.php?acao=listartitulos">Exibir Cadastro</a>
+                </div>
+            </div>
+            </form>
+
+            </div>
                 <script>
 
                     $(function () {
@@ -240,7 +262,8 @@ $date = date('d/m/Y'); ?>
                                 },
                                 datavencimento: {
                                     required: true,
-                                    maxlength:10
+                                    maxlength:10,
+                                    ValidarData:true
 
 
                                 }
@@ -288,7 +311,9 @@ $date = date('d/m/Y'); ?>
                                 },
                                 datavencimento: {
                                     required: "Preenchimento obrigatório!!",
-                                    maxlength:"No maximo 10 caracteres"
+                                    maxlength:"No maximo 10 caracteres",
+                                    ValidarData: "A data deve ser superior ou igual à data atual"
+                                    
 
                                 }
 
