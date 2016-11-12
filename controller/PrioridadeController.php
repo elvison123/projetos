@@ -28,7 +28,6 @@ class PrioridadeController {
                 $this->listaTodos("prioridade");
             }
             if ($acao == "deletar"){
-                var_dump($_GET["id"]);
                 $this->deletarPrioridade();
             }
             if ($acao == "editar"){
@@ -95,8 +94,8 @@ class PrioridadeController {
             echo $e->getMessage();
             exit();
         }
-        
-        function deletarPrioridade() {
+    }    
+    function deletarPrioridade() {
         try {
             $id = $_GET["id"];
             $this->prioridade->deletarPorId($id);
@@ -111,6 +110,7 @@ class PrioridadeController {
             try{
             $this->prioridade->setNome($_GET["nome"]);
             $this->prioridade->setId($_GET["id_classificacao"]);
+            $this->prioridade->editarPrioridade();
             $this->prioridade->listarTodos("editar");
             
             }  catch (Exception $e){
@@ -122,7 +122,7 @@ class PrioridadeController {
         }
         
         
-    }
+    
     
     new PrioridadeController();
     

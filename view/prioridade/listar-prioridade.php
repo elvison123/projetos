@@ -112,7 +112,7 @@ if(!isset($_SESSION["nomeusuario"])){
                         
                     </tr>
                 </tbody>
-                <?php    
+                <?php                    
                     endforeach;
                 }
                 ?>
@@ -159,3 +159,4 @@ if(!isset($_SESSION["nomeusuario"])){
         
         
 </div>
+</html>

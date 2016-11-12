@@ -3,7 +3,7 @@
 require_once '../model/Cliente.php';
 
 //require_once '../view/cadastrar-cliente.php';
-//require_once '../view/listar-cliente.php';
+//require_once '../view/listar-cliente.php'; 
 
 class ClienteController {
 
