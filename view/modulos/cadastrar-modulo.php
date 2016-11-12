@@ -107,9 +107,13 @@ if(!isset($_SESSION["nomeusuario"])){
                 <div class="col-xs-10">
                     <select name="classificacaoid">
                          <?php session_start() ?>
-            <?php if (isset($_SESSION["classificacao1"])){foreach ($_SESSION["classificacao1"] as $classificacao):?> 
+            <?php if (isset($_SESSION["classificacao1"])): ?>
+                <?php foreach ($_SESSION["classificacao1"] as $classificacao):?> 
+                        <?php if ($classificacao['tipo'] == "S"): ?>
                                     <option value="<?php echo $classificacao['id_classificacao']; ?>"><?php echo $classificacao['nome']; ?></option>
-                               <?php endforeach;}?> 
+                                     <?php endif; ?> 
+                               <?php endforeach; ?> 
+                                     <?php endif; ?> 
                     </select>
                 </div>
             </div>

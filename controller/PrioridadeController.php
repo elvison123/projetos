@@ -69,17 +69,17 @@ class PrioridadeController {
                 header ("Location: ../view/prioridade/listar-prioridade.php");
             }
             elseif ($pagina == "editar"){
-                $prioridade = $this->prioridade->listarPrioridades();
+                $prioridade = $this->prioridade->editarPrioridade();
                 session_start();
                 $_SESSION["prioridade"] = $prioridade;
                 $mensagem = "A prioridade<strong> " . $this->prioridade->getNome() . " </strong> teve seus dados alterados";
                 header("Location: ../view/prioridade/listar-prioridade.php?status=" . $mensagem);
                 }
                 elseif ($pagina == "apagar") {
-                $prioridade = $this->prioridade->listarPrioridades();
+                $prioridade = $this->prioridade->deletarPorId();
                 session_start();
                 $_SESSION["prioridade"] = $prioridade;
-                $mensagem = "A prioridade<strong> " . $this->prioridade->getPrioridade() . " </strong>foi deletada.";
+                $mensagem = "A prioridade<strong> " . $this->prioridade->getNome() . " </strong>foi deletada.";
                 header("Location: ../view/prioridade/listar-prioridade.php?status=" . $mensagem);
             } 
             elseif ($pagina == "cadastrarprioridade") {            

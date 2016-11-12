@@ -30,7 +30,9 @@ class FuncaoModuloController {
             }
             if($acao == "validarcodigo"){
                 $this->validarCodigo();
-                
+            }
+            if ($acao == "funcao") {
+                $this->carregarFuncao();
             }
             if ($acao == null) {
                 echo "acao nao definido";
@@ -133,6 +135,15 @@ class FuncaoModuloController {
             exit();
         }
         header("Location: ../view/modulos/cadastar-funcao-modulo.php?status=" . $mensagem);
+    }
+    
+    public function carregarFuncao()
+            {
+        $data = $this->funcaoModulo->buscaPorFuncao($_GET["funcao"]);
+        
+        header('Content-type: aplication/json');
+        echo json_encode($data);
+        exit;
     }
 
 }

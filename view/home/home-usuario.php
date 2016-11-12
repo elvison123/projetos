@@ -70,8 +70,8 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
                 <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
-                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li><a href=../../view/classificacoes/cadastrar-funcao.php">Cadastrar Função</a></li>
+                <li><a href=../../view/classificacoes/listar-funcao-modulo" >Listar Funções cadastradas</a></li>
                 <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
                 <li><a href="../../controller/PrioridadeController.php?acao=listarprioridades">Listar Prioridades Cadastradas</a></li>
 

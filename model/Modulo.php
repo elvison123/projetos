@@ -64,8 +64,8 @@ class Modulo extends Banco {
     public function listarTodos() {
         try {
             $db = $this->instancia();
-            $sql = "SELECT m.nomeModulo, m.id_modulo, m.id_classificacao_fk, c.nome, c.id_classificacao "
-                    . "FROM classificacao c JOIN modulo m ON c.id_classificacao = m.id_classificacao_fk";
+            $sql = "SELECT m.nomeModulo, m.id_modulo, m.id_classificacao_fk, c.nome, c.id_classificacao, c.tipo "
+                    . "FROM classificacao c JOIN modulo m ON c.id_classificacao = m.id_classificacao_fk ";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             $linhas = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -105,5 +105,32 @@ class Modulo extends Banco {
         }
     }
     
+    public function buscaPorClassificacao($classificacao){
+        try {
+            $db = $this->instancia();
+            $sql = "SELECT * FROM modulo where id_classificacao_fk = ?";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("1", $classificacao);
+            $stmt->execute();
+            $linhas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dados = array();
+            
+            $dados[] = array(
+                    'value'=> null,
+                    'text'=> '--'
+                );
+            
+            foreach ($linhas as $linha){
+                $dados[] = array(
+                    'value'=> $linha['id_modulo'],
+                    'text'=> $linha['nomeModulo']
+                );
+            }
+            return $dados;
+        } catch (Exception $ex) {
+            echo $e->getMessage();
+            exit();
+        }
+    }
 
 }

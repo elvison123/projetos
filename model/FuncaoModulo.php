@@ -110,5 +110,33 @@ class FuncaoModulo extends Banco {
             exit();
         }
     }
+    
+    public function buscaPorFuncao($funcao){
+        try {
+            $db = $this->instancia();
+            $sql = "SELECT * FROM funcaomodulo where id_modulo_fk= ?";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("1", $funcao);
+            $stmt->execute();
+            $linhas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dados = array();
+            
+            $dados[] = array(
+                    'value'=> null,
+                    'text'=> '--'
+                );
+            
+            foreach ($linhas as $linha){
+                $dados[] = array(
+                    'value'=> $linha['id_funcao'],
+                    'text'=> $linha['nome']
+                );
+            }
+            return $dados;
+        } catch (Exception $ex) {
+            echo $e->getMessage();
+            exit();
+        }
+    }
 
 }

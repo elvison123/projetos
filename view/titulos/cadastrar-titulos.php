@@ -69,7 +69,7 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
                 <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar Função</a></li>
                 <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
                 
 
@@ -98,11 +98,11 @@ if(!isset($_SESSION["nomeusuario"])){
     </div>
 
         
-    <form action="../../controller/TituloController.php" method="GET" id="formcad" novalidate="" >
+    <form action="../../controller/TituloController.php" method="POST" id="formcad" novalidate="" >
                 <input type="hidden" name="acao" value="cadastrartitulo">
 
                 <div class="form-group row">
-                    <label for="id_cliente" class="col-xs-2 col-form-label"  >Clientes Cadastrados</label>
+                    <label for="id_cliente" class="col-xs-2 col-form-label"  >Cliente</label>
                     <div class="col-xs-10">
                         
                         <select name="id_cliente">
@@ -188,7 +188,7 @@ $date = date('d/m/Y'); ?>
 
                 </div>
                 <script>
-
+                    $('select').css({width:'100%'}).select2();
                     $(function () {
                         $("#valor").maskMoney({symbol: 'R$ ',
                             showSymbol: true, thousands: '.', decimal: ',', symbolStay: true});

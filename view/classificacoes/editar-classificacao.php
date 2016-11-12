@@ -22,6 +22,8 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/exemplo_1.js"></script>
         <script src="../js/exemplo_2.js"></script>     
         <script src="../js/exemplo_3.js"></script> 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
          <!-- Bootstrap -->
         <link href="../css/bootstrap.css" rel="stylesheet">
 
@@ -108,6 +110,15 @@ if(!isset($_SESSION["nomeusuario"])){
                             <input type="text" class="form-control" name="nome" id="nome" required maxlength="50" value="<?php echo ltrim($_GET["nome"]);?>" placeholder="Digite o nome do cliente">
 			</div>
                 </div>
+                <div class="form-group row">
+                    <label  for="tipo" class="col-xs-2 col-form-label" >Tipo</label>
+                    <div class="col-xs-8">
+                        <select name="tipo">
+                            <option value="S">Software</option>
+                            <option value="H">Hardware</option>
+                            </select>
+                    </div>
+                </div>
         	<div class="row">
                 <div class="col-xs-2"></div>
                 <div class="col-xs-6">
@@ -122,6 +133,7 @@ if(!isset($_SESSION["nomeusuario"])){
    
  <script>
                 $(document).ready(function () {
+                    $('select').css({width:'100%'}).select2();
                     $("#formcad").validate({
                         rules: {
                             nome: {

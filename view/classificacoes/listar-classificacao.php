@@ -113,8 +113,10 @@ if(!isset($_SESSION["nomeusuario"])){
                 <tr class="info">
                     <td><strong>ID</strong></td>
                     <td><strong>NOME DAS CLASSIFICAÇÕES</strong></td>
+                    <td><strong>TIPO</strong></td>
                     <td><strong>DELETAR</strong></td>
                     <td><strong>EDITAR</strong></td>
+                    
                     
                 </tr>
             </thead>    
@@ -125,6 +127,8 @@ if(!isset($_SESSION["nomeusuario"])){
                 <tr>
                     <td><?php echo $classificacao["id_classificacao"];?></td>
                     <td><?php echo $classificacao["nome"];?></td>
+                    <td><?php echo 'S'== $classificacao["tipo"]?'Software':'Hardware';?></td>
+                        
                     <td><button class="delete btn btn-danger" data-nome ="<?php echo $classificacao["nome"]; ?>" data-id="<?php echo $classificacao["id_classificacao"]; ?>"data-target="#myModal">Excluir</td>
                     <td><a class="btn btn-default" href="editar-classificacao.php?id_classificacao=<?php echo $classificacao["id_classificacao"];?>&nome=<?php echo $classificacao["nome"];?>" role="button">Editar</a></td>
                 </tr>

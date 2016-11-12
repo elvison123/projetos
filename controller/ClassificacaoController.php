@@ -10,6 +10,7 @@ class ClassificacaoController{
         try {
             $this->classificacao = new Classificacao();
             $acao = isset($_GET["acao"]) ? $_GET["acao"] : null;
+            
             if ($acao == "paginamodulo") {
                 $this->listarTodos("cadastrarmodulo");
             }
@@ -30,6 +31,9 @@ class ClassificacaoController{
             if ($acao == "editar") {
                 $this->editarClassificao();
             }
+            if ($acao == "classificacao") {
+                $this->carregarClassificacao();
+            }
             else {
                 echo "ação nao informada";
             }
@@ -41,9 +45,11 @@ class ClassificacaoController{
     public function cadastrar(){
             try{
 		$this->classificacao->setNome($_GET["nome"]);
+                $this->classificacao->setTipo($_GET["tipo"]);
 		            
 		$this->classificacao->cadastarClassificacao();
                 $nome = $this->classificacao->getNome();
+                $tipo = $this->classificacao->getTipo();
                 
                 $mensagem= "A Classificacão<strong> " .$nome." </strong>foi cadastrada";
                 header("Location: ../view/classificacoes/cadastrar-classificacao.php?status=".$mensagem);
@@ -114,6 +120,7 @@ class ClassificacaoController{
     public function editarClassificao(){
             try{
             $this->classificacao->setNome($_GET["nome"]);
+            $this->classificacao->setTipo($_GET["tipo"]);
             $this->classificacao->setId($_GET["id_classificacao"]);
             $this->classificacao->editarClassificacao();
             $this->listarTodos("editar");
@@ -124,6 +131,14 @@ class ClassificacaoController{
             
                   
         }
+    public function carregarClassificacao()
+            {
+        $data = $this->classificacao->buscaporTipo($_GET["tipo"]);
+       
+        header('Content-type: aplication/json');
+        echo json_encode($data);
+        exit;
+    }
 }
 
 

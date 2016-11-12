@@ -3,6 +3,7 @@ require_once '../model/Banco.php';
 class Classificacao extends Banco{
     private $nome;
     private $id;
+    private $tipo;
     function getNome() {
         return $this->nome;
     }
@@ -18,18 +19,29 @@ class Classificacao extends Banco{
     function setId($id) {
         $this->id = $id;
     }
+    
+    function getTipo() {
+        return $this->tipo;
+    }
+    
+    function setTipo($tipo) {
+        $this->tipo = $tipo;
+    }
+  
 
     public function cadastarClassificacao(){
         try{
             $db=  $this->instancia();
-            $sql="INSERT INTO classificacao (nome) VALUES (?)";
+            $sql="INSERT INTO classificacao (nome, tipo) VALUES (?,?)";
+           
             $stmt = $db->prepare($sql);
             $stmt->bindParam("1", $this->nome);
+            $stmt->bindParam("2", $this->tipo);
             $stmt->execute();
-                  
+            
         } catch (Exception $ex) {
             echo $ex->getMessage();
-
+              die; 
         }
     }
     public function listarTodosClassificacao() {
@@ -66,9 +78,10 @@ class Classificacao extends Banco{
 
         try {
             $db = $this->instancia();
-            $stmt = $db->prepare("UPDATE classificacao SET nome= ? WHERE id_classificacao= ?");
+            $stmt = $db->prepare("UPDATE classificacao SET nome= ?, tipo= ? WHERE id_classificacao= ?");
             $stmt->bindParam("1", $this->nome);
-            $stmt->bindParam("2", $this->id);
+            $stmt->bindParam("2", $this->tipo);
+            $stmt->bindParam("3", $this->id);
             $stmt->execute();
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -77,6 +90,34 @@ class Classificacao extends Banco{
         echo $this->id." linhas editada";
     }
 
+    
+    public function buscaporTipo($tipo){
+        try {
+            $db = $this->instancia();
+            $sql = "SELECT * FROM classificacao where tipo= ?";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam("1", $tipo);
+            $stmt->execute();
+            $linhas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dados = array();
+            
+            $dados[] = array(
+                    'value'=> null,
+                    'text'=> '--'
+                );
+            
+            foreach ($linhas as $linha){
+                $dados[] = array(
+                    'value'=> $linha['id_classificacao'],
+                    'text'=> $linha['nome']
+                );
+            }
+            return $dados;
+        } catch (Exception $ex) {
+            echo $e->getMessage();
+            exit();
+        }
+    }
 }
 
     

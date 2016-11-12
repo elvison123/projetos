@@ -1,20 +1,21 @@
 <?php
 
 require_once '../model/Modulo.php';
-require_once '../controller/ClassificacaoController.php';
+//require_once '../controller/ClassificacaoController.php';
 
 class ModuloController {
 
     private $modulo;
     
     function __construct() {
+ 
         try {
             $this->modulo = new Modulo();
             $acao = isset($_GET["acao"]) ? $_GET["acao"] : null;
             if ($acao == "cadastrarmodulo") {
                 $this->cadastrarModulo();
             }
-            
+           
             if ($acao == "listarmodulo") {
                 $this->listarModulos("padrao");
             }
@@ -25,7 +26,9 @@ class ModuloController {
                 $this->atualizarModulo();
             }
             
-            if ($acao == null) {
+            if ($acao == "modulo") {
+                $this->carregarModulo();
+            } else {
                 echo "acao nao definido";
             }
         } catch (Exception $ex) {
@@ -97,7 +100,6 @@ class ModuloController {
             $this->modulo->cadastrarModulos();
             $this->listarModulos("padrao");
             $nome = $this->modulo->getNome();
-
             $mensagem = "O modulo <strong> " . $nome . " </strong>foi cadastrada";
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -105,6 +107,14 @@ class ModuloController {
         }
         header("Location: ../view/modulos/cadastrar-modulo.php?status=" . $mensagem);
         
+    }
+    public function carregarModulo()
+            {
+        $data = $this->modulo->buscaPorClassificacao($_GET["tipo"]);
+        
+        header('Content-type: aplication/json');
+        echo json_encode($data);
+        exit;
     }
 
 }
