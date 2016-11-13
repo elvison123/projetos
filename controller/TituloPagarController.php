@@ -17,7 +17,7 @@ class TituloPagarController {
                 $this->cadastrarTitulo();
             }
             if ($acao == "listartitulos") {
-                $this->listarTitulos();
+                $this->listarTitulos("padrao");
             }
             if ($acao == "excluirtitulo") {
                 $this->excluirTitulos();
@@ -50,17 +50,23 @@ class TituloPagarController {
         }
     }
 
-    function listarTitulos() {
+    function listarTitulos($acao) {
         try {
-            $linhas = $this->titulo->listarTitulos();
-            
-            session_start();
-            $_SESSION["linhas"] = $linhas;
-            header("Location: ../view/titulospagar/listar-titulopagar.php");
-//          include '../view/titulospagar/listar-titulopagar.php';
+            if($acao == "padrao"){
+                $linhas = $this->titulo->listarTitulos();
+                session_start();
+                $_SESSION["linhas"] = $linhas;       
+            }
+            elseif ($acao == "apagar") {
+                $linhas = $this->titulo->listarTitulos();
+                session_start();
+                $_SESSION["linhas"] = $linha;
+                $mensagem = "O titulo <strong> " . $this->titulo->getDocumento() . " </strong>foi deletado.";
+            }
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
+        header("Location: ../view/titulospagar/listar-titulopagar.php?status=".$mensagem);
     }
 
     function excluirTitulos() {
@@ -70,7 +76,7 @@ class TituloPagarController {
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
-        $this->listarTitulos();
+        $this->listarTitulos("apagar");
     }
 
     function editarTitulos() {
@@ -88,7 +94,7 @@ class TituloPagarController {
             echo $ex->getMessage();
             exit();
         }
-        $this->listarTitulos();
+        $this->listarTitulos("padrao");
     }
 
 }
