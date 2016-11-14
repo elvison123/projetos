@@ -1,9 +1,9 @@
 <?php 
 session_start();
-//if(!isset($_SESSION["nomeusuario"])){
-//    header('Location: LoginUsuario.php');
-//   
-//}
+if(!isset($_SESSION["nomeusuario"])){
+    header('Location: LoginUsuario.php');
+   
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

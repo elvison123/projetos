@@ -102,7 +102,8 @@ class PrioridadeController {
     function editarPrioridade() {
         try {
             $this->prioridade->setNome($_GET["nome"]);
-            $this->prioridade->setId($_GET["id_classificacao"]);
+            $this->prioridade->setId($_GET["id_prioridade"]);
+            $this->prioridade->editarPrioridade();
             $this->listarTodos("editar");
         } catch (Exception $e) {
             echo $e->getMessage();
