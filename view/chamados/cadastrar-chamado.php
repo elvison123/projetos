@@ -18,10 +18,10 @@ if(!isset($_SESSION["nomeusuario"])){
         <script src="../js/jquery.validate.min.js"></script>
         <script src="../js/jquery.maskedinput.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
-        <!--<script src="../js/valida_cpf_cnpj.js"></script>-->
-        <script src="../js/exemplo_1.js"></script>
+<!--        <script src="../js/valida_cpf_cnpj.js"></script>-->
+<!--        <script src="../js/exemplo_1.js"></script>
         <script src="../js/exemplo_2.js"></script>     
-        <script src="../js/exemplo_3.js"></script>
+        <script src="../js/exemplo_3.js"></script>-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
          <!-- Bootstrap -->
