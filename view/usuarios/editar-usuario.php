@@ -84,6 +84,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -163,9 +166,13 @@ if(!isset($_SESSION["nomeusuario"])){
 
 
 
-            <div class="form-group row">
-                
-                <input class="center-block btn-success" type="submit" onclick="clicked"id="myBtn" value="Editar">
+            <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-6">
+                <input class="btn btn-success" type="submit" onclick="clicked"id="myBtn" value="Editar">
+                </div>
+               
+            </div>   
 
 
 
@@ -205,8 +212,7 @@ if(!isset($_SESSION["nomeusuario"])){
                             
                             cpf: {
                                 required: true,
-                                //minlength: 14,
-                                //maxlength: 14
+                                ValidarCPF: true
 
                             },
                             empresa: {
@@ -244,8 +250,7 @@ if(!isset($_SESSION["nomeusuario"])){
                             
                             cpf: {
                                 required: "Preenchimento obrigatório!!",
-                               // minlength: "Deve conter no minimo 14 caracteres.",
-                               // maxlength: "Deve conter no máximo 14 caracteres."
+                                ValidarCPF: "CPF invalido!!"
 
                             },
                             empresa: {
@@ -270,7 +275,7 @@ if(!isset($_SESSION["nomeusuario"])){
 
 
 
-    </div>
+    
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 

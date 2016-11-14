@@ -1,9 +1,9 @@
 <?php 
 session_start();
-if(!isset($_SESSION["nomeusuario"])){
-    header('Location: LoginUsuario.php');
-   
-}
+//if(!isset($_SESSION["nomeusuario"])){
+//    header('Location: LoginUsuario.php');
+//   
+//}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -62,8 +62,17 @@ if(!isset($_SESSION["nomeusuario"])){
             <ul class="dropdown-menu">
                 <li><a href="#">Modulos</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="../../controller/ModuloController.php?acao=paginafuncao">Cadastrar Função</a></li>
-                <li><a href="../../controller/ModuloController.php?acao=listarfuncoes">Listar Funções Cadastradas</a></li>
+                <li><a href="../../view/classificacoes/cadastrar-classificacao.php">Cadastrar Classificação</a></li>
+                <li><a href="../../controller/ClassificacaoController.php?acao=buscartodos">Listar Classificacoes Cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/ModuloController.php?acao=paginamodulo">Cadastrar Modulos</a></li>
+                <li><a href="../../controller/ModuloController.php?acao=listarmodulo">Listar Modulos </a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
+                <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -83,8 +92,8 @@ if(!isset($_SESSION["nomeusuario"])){
     </ul>
     
     <div class="container">
-        <?php if (!$_GET['status']==null) { ?>
-                <div class="alert alert-danger">
+        <?php if (isset($_GET['status'])) { ?>
+                <div class="alert alert-info">
                     <center><?php echo $_GET['status']; ?></center>
                 </div>
            
@@ -94,7 +103,7 @@ if(!isset($_SESSION["nomeusuario"])){
         <div class="row col-xs-12">
             <table class="table table-bordered table-hover">
                 <thead>
-                    <tr>
+                    <tr class="info">
                         <td>ID</td>
                         <td><strong>NOME DA PRIORIDADE</strong></td>
                         <td><strong>DELETAR<strong></td>
@@ -102,7 +111,7 @@ if(!isset($_SESSION["nomeusuario"])){
                         
                     </tr>
                 </thead>
-                <?php if (isset($_SESSION["prioridade"])){foreach ($_SESSION["prioridade"] as $linha):?>   
+                <?php if (isset($_SESSION["linha"])){foreach ($_SESSION["linha"] as $linha):?>   
                 <tbody>
                     <tr>
                         <td><?php echo $linha["id_prioridade"];?></td>

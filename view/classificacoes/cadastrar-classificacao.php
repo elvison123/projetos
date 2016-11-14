@@ -232,7 +232,7 @@ if(!isset($_SESSION["nomeusuario"])){
 
     </head>
     
-    <ul class="nav nav-pills">
+   <ul class="nav nav-pills">
         <li role="presentation" class="active"><a href="../home/home-usuario.php">Home</a></li>
         <!-- <li role="presentation"><a href="#">Messages</a></li>-->
         <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -290,6 +290,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -307,7 +310,6 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
-
 
 
 

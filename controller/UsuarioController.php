@@ -11,7 +11,7 @@ class UsuarioController{
             
         }
         if($acao =="listarusuarios"){
-            $this->listarUsuario();
+            $this->listarUsuario("padrao");
         }
         if($acao =="excluirusuario"){
             $this->excluirUsuario();
@@ -38,33 +38,43 @@ class UsuarioController{
             $this->usuario->setEmpresa(isset($_GET["empresa"])?$_GET["empresa"]:null);
             $this->usuario->setSenha(isset($_GET["senha"])?$_GET["senha"]:null);
             $this->usuario->cadastrarUsuario();
-            header ('Location: ../view/usuarios/cadastrar-usuario.php');
+            $mensagem = "O usuário <strong> " . $this->usuario->getNome() . " </strong>foi cadastrado.";
+            
         } catch (Exception $ex) {
             echo $ex->getMessage();
             exit();
 
         }
-            
+         header ('Location: ../view/usuarios/cadastrar-usuario.php?status='.$mensagem);   
     }
-    function listarUsuario(){
-        try{
-        $usuarios = $this->usuario->listarUsuario();
-//        include '../view/usuarios/listar-usuario.php';
-        session_start();
-        $_SESSION["usuarios"] = $usuarios;
-        header ('Location: ../view/usuarios/listar-usuario.php');
-        
-        }  catch (Exception $e){
-            echo $e->getMessage();
-            exit();
+    function listarUsuario($acao){
+       
+        try {
+            $linhas = $this->usuario->listarUsuario();
+            session_start();
+            $_SESSION["linhas"] = $linhas;
+            $mensagem = null;
+
+            if ($acao == "apagar") {
+                $mensagem = "O usuário <strong> " . $this->usuario->getNome() . " </strong>foi deletado.";
+                            
+            } elseif ($acao == "editar") {
+                $mensagem="O usuário <strong> " . $this->usuario->getNome() . " </strong>foi editado.";
+                
+            } else{
+                
+            }
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
         }
+        header("Location: ../view/usuarios/listar-usuario.php?status=" . $mensagem);
         
     }
     function excluirUsuario(){
         try{
         $id = isset($_GET['id'])?$_GET["id"]:null;
         $this->usuario->excluirUsuarioId($id);
-        $this->listarUsuario();
+        $this->listarUsuario("apagar");
         }  catch (Exception $e){
             echo $e->getMessage();
         }
@@ -79,7 +89,7 @@ class UsuarioController{
             $this->usuario->setEmpresa(isset($_GET["empresa"])?$_GET["empresa"]:null);
             $this->usuario->setSenha(isset($_GET["senha"])?$_GET["senha"]:null);
             $this->usuario->editarUsuario($id);
-            $this->listarUsuario();
+            $this->listarUsuario("editar");
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }

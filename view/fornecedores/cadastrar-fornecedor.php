@@ -84,6 +84,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -197,9 +200,11 @@ if(!isset($_SESSION["nomeusuario"])){
 
                             },
                             cpf: {
-                                required: true
+                                required: true,
+                                ValidarCNPJ: true
 //                                minlength: 14,
 //                                maxlength: 14
+
 
                             },
                             
@@ -229,7 +234,7 @@ if(!isset($_SESSION["nomeusuario"])){
                                 required: "Preenchimento obrigatório!!",
 ////                                minlength: "Deve conter no minimo 14 caracteres.",
 //                                maxlength: "Deve conter no máximo 14 caracteres."
-//                                ValidarCPF: true
+                                ValidarCNPJ: "CNPJ invalido!!"
 
                             },
                             

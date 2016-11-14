@@ -84,6 +84,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -189,15 +192,17 @@ if(!isset($_SESSION["nomeusuario"])){
 
 
 
-                <div class="form-group row">
-
-                    <input class="center-block btn-success" type="submit">
-
-
-
-                    </form>
-
+                <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-6">
+                <input class="btn btn-success" type="submit" onclick="clicked"id="myBtn" value="Editar">
                 </div>
+               
+            </div>     
+                    </form>
+</div>
+
+                
                 <script>
 
                     
@@ -323,7 +328,7 @@ if(!isset($_SESSION["nomeusuario"])){
                 </script>
 
 
-        </div>
+        
 
 
 

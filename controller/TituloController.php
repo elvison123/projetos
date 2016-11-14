@@ -2,14 +2,16 @@
 
 require_once '../model/Titulo.php';
 require_once '../controller/ClienteController.php';
+
 class TituloController {
+
     private $cliente;
     private $titulo;
 
     function __construct() {
         $this->titulo = new Titulo();
         $this->cliente = new ClienteController();
-        
+
         $acao = isset($_GET["acao"]) ? $_GET["acao"] : null;
 
         try {
@@ -17,12 +19,12 @@ class TituloController {
                 $this->cadastrarTitulo();
             }
             if ($acao == "listartitulos") {
-                $this->listarTitulos();
+                $this->listarTitulos("padrao");
             }
             if ($acao == "excluirtitulo") {
                 $this->excluirTitulos();
             }
-            if($acao== "editartitulo"){
+            if ($acao == "editartitulo") {
                 $this->editarTitulos();
             }
             if ($acao == null) {
@@ -44,22 +46,34 @@ class TituloController {
             $this->titulo->setDescricao(isset($_GET["descricao"]) ? $_GET["descricao"] : null);
             $this->titulo->setId_cliente(isset($_GET["id_cliente"]) ? $_GET["id_cliente"] : null);
             $this->titulo->cadastrarTitulo();
-            $this->cliente->listarTodos("titulos");
-            } catch (Exception $e) {
+            $mensagem = "O titulo <strong> " . $this->titulo->getDocumento() . " </strong>foi cadastrada";
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
+        header("Location: ../view/titulos/cadastrar-titulos.php?status=" . $mensagem);
+       
     }
 
-    function listarTitulos() {
+    function listarTitulos($acao) {
         try {
             $linhas = $this->titulo->listarTitulos();
             session_start();
             $_SESSION["linhas"] = $linhas;
-            header("Location: ../view/titulos/listar-titulos.php");
-//           include '../view/titulos/listar-titulos.php';
+            $mensagem = null;
+
+            if ($acao == "apagar") {
+                $mensagem = "O titulo <strong> " . $this->titulo->getDocumento() . " </strong>foi deletado.";
+                            
+            } elseif ($acao == "editar") {
+                $mensagem="O titulo <strong> " . $this->titulo->getDocumento() . " </strong>foi editado.";
+                
+            } elseif($acao == "padrao") {
+                
+            }
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
+        header("Location: ../view/titulos/listar-titulos.php?status=" . $mensagem);
     }
 
     function excluirTitulos() {
@@ -69,7 +83,7 @@ class TituloController {
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
-        $this->listarTitulos();
+        $this->listarTitulos("apagar");
     }
 
     function editarTitulos() {
@@ -87,8 +101,9 @@ class TituloController {
             echo $ex->getMessage();
             exit();
         }
-        $this->listarTitulos();
+        $this->listarTitulos("editar");
     }
 
 }
+
 new TituloController();

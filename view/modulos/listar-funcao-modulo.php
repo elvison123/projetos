@@ -84,6 +84,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -111,16 +114,16 @@ if(!isset($_SESSION["nomeusuario"])){
            
 
         <?php }; ?>
-        <h1>Listar funções do modulo</h1>
+        <h1>Listar Funções do Módulo</h1>
         <div class="row col-xs-12">
             <table class="table table-bordered table-hover">
                 <thead>
-                    <tr>
-                        <td>Codigo</td>
-                        <td>Modulo</td>
-                        <td>Função</td>
-                        <td class="danger">Deletar</td>
-                        <td class="danger">Editar</td>
+                    <tr class="info">
+                        <td><strong>CODIGO</strong></td>
+                        <td><strong>MODULO</strong></td>
+                        <td><strong>FUNÇÃO</strong></td>
+                        <td><strong>DELETAR</strong></td>
+                        <td><strong>EDITAR</strong></td>
                     </tr>
                 </thead>
                 <?php if (isset($_SESSION["linhas"])){foreach ($_SESSION["linhas"] as $linha):?>   
