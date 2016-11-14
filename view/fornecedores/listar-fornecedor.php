@@ -84,6 +84,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -153,9 +156,7 @@ if(!isset($_SESSION["nomeusuario"])){
                 
                 <td><button class="delete btn btn-danger" data-nome ="<?php echo $fornecedor["nome"]; ?>" data-id="<?php echo $fornecedor["id_fornecedor"]; ?>"data-target="#myModal">Excluir</td>
                 
-                <td><a class="btn btn-default" href="editar-fornecedor.php?id_fornecedor=<?php echo $fornecedor["id_fornecedor"];?>&nome=<?php echo $fornecedor['nome'];?>&email=<?php echo $fornecedor["email"];?>
-                       &telefone=<?php echo $fornecedor["telefone"];?>&cpf=<?php echo $fornecedor["cpf"];?>&
-                       endereco=<?php echo $fornecedor["endereco"];?>" role="button">Editar</a></td>
+                <td><a class="btn btn-default" href="editar-fornecedor.php?id_fornecedor=<?php echo $fornecedor["id_fornecedor"];?>&nome=<?php echo $fornecedor['nome'];?>&email=<?php echo $fornecedor["email"];?>&telefone=<?php echo $fornecedor["telefone"];?>&cpf=<?php echo $fornecedor["cpf"];?>&endereco=<?php echo $fornecedor["endereco"];?>" role="button">Editar</a></td>
             </tr>
             </tbody>
                     

@@ -37,7 +37,7 @@ class Prioridade extends Banco {
         }
     }
     
-    public function listarTodos() {
+    public function listarTodosPrioridade() {
         
         try{
         

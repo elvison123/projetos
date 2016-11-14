@@ -85,6 +85,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -102,7 +105,6 @@ if(!isset($_SESSION["nomeusuario"])){
             <li><a href="../../controller/LoginUsuarioController.php?acao=logout">Sair</a></li>
         </ul>
     </ul>
-
 
 
     <div class="container">
@@ -187,15 +189,22 @@ if(!isset($_SESSION["nomeusuario"])){
 
 
 
-            <div class="form-group row">
-                
-                <input class="center-block cpf_cnpj btn-success " type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
+            <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-6">
+                <input class="btn btn-success" type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
+                </div>
+                <div class="col-xs-2">
+                    <a class="btn btn-default" href="../../controller/ClienteController.php?acao=buscartodos">Exibir Cadastro</a>
+                </div>
+            </div>
 
 
 
                 </form>
 
-            </div>
+            
+    </div>
 
 
             <script>

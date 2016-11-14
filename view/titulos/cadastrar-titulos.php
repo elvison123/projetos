@@ -83,6 +83,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -103,6 +106,13 @@ if(!isset($_SESSION["nomeusuario"])){
 
 
 <div class="container">
+    <?php if (isset($_GET['status'])&&(!$_GET['status']==null)) { ?>
+                <div class="alert alert-info">
+                    <center><?php echo $_GET['status']; ?></center>
+                </div>
+           
+
+        <?php }; ?>
     <div class="row">
         <div class="col-xs-4">
             <h1 class="h1">Cadastrar Títulos </h1>
@@ -190,15 +200,19 @@ $date = date('d/m/Y'); ?>
 
 
 
-                <div class="form-group row">
-
-                    <input class="center-block btn-success" type="submit">
-
-
-
+              <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-6">
+                <input class="btn btn-success" type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
+                </div>
+                <div class="col-xs-2">
+                    <a class="btn btn-default" href="../../controller/TituloController.php?acao=listartitulos">Exibir Cadastro</a>
+                </div>
+            </div>
                     </form>
 
-                </div>
+                
+</div>
                 <script>
 
                     $(function () {
@@ -324,7 +338,7 @@ showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
 
 
 
-        </div>
+        
 
 
 

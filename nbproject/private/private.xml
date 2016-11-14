@@ -3,8 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp64/www/projetos/controller/ClassificacaoController.php</file>
             <file>file:/C:/wamp64/www/projetos/view/clientes/cadastrar-cliente.php</file>
-            <file>file:/C:/wamp64/www/projetos/view/home/editar-perfil.php</file>
             <file>file:/C:/wamp64/www/projetos/view/fornecedores/cadastrar-fornecedor.php</file>
             <file>file:/C:/wamp64/www/projetos/view/usuarios/listar-usuario.php</file>
             <file>file:/C:/wamp64/www/projetos/view/clientes/editar-cliente.php</file>
@@ -15,13 +15,12 @@
             <file>file:/C:/wamp64/www/projetos/view/titulos/editar-titulos.php</file>
             <file>file:/C:/wamp64/www/projetos/view/fornecedores/listar-fornecedor.php</file>
             <file>file:/C:/wamp64/www/projetos/view/modulos/cadastrar-modulo.php</file>
-            <file>file:/C:/wamp64/www/projetos/model/Cliente.php</file>
-            <file>file:/C:/wamp64/www/projetos/model/Fornecedor.php</file>
             <file>file:/C:/wamp64/www/projetos/controller/ModuloController.php</file>
+            <file>file:/C:/wamp64/www/projetos/controller/TituloPagarController.php</file>
             <file>file:/C:/wamp64/www/projetos/controller/ClienteController.php</file>
             <file>file:/C:/wamp64/www/projetos/view/clientes/listar-cliente.php</file>
             <file>file:/C:/wamp64/www/projetos/controller/FuncaoModuloController.php</file>
-            <file>file:/C:/wamp64/www/projetos/controller/FornecedorController.php</file>
+            <file>file:/C:/wamp64/www/projetos/model/Usuario.php</file>
             <file>file:/C:/wamp64/www/projetos/view/modulos/listar-funcao-modulo.php</file>
             <file>file:/C:/wamp64/www/projetos/controller/TituloController.php</file>
             <file>file:/C:/wamp64/www/projetos/view/prioridade/editar-prioridade.php</file>
@@ -30,14 +29,18 @@
             <file>file:/C:/wamp64/www/projetos/view/fornecedores/editar-fornecedor.php</file>
             <file>file:/C:/wamp64/www/projetos/view/usuarios/cadastrar-usuario.php</file>
             <file>file:/C:/wamp64/www/projetos/view/modulos/editar-funcao-modelo.php</file>
+            <file>file:/C:/wamp64/www/projetos/controller/UsuarioController.php</file>
             <file>file:/C:/wamp64/www/projetos/view/classificacoes/cadastrar-classificacao.php</file>
-            <file>file:/C:/wamp64/www/projetos/view/titulospagar/editar-titulospagar.php</file>
+            <file>file:/C:/wamp64/www/projetos/controller/PrioridadeController.php</file>
             <file>file:/C:/wamp64/www/projetos/view/prioridade/cadastrar-prioridade.php</file>
+            <file>file:/C:/wamp64/www/projetos/view/titulospagar/editar-titulospagar.php</file>
+            <file>file:/C:/wamp64/www/projetos/model/Prioridade.php</file>
             <file>file:/C:/wamp64/www/projetos/view/titulos/cadastrar-titulos.php</file>
             <file>file:/C:/wamp64/www/projetos/view/modulos/editar-modulo.php</file>
             <file>file:/C:/wamp64/www/projetos/view/titulospagar/cadastrar-titulopagar.php</file>
             <file>file:/C:/wamp64/www/projetos/view/usuarios/editar-usuario.php</file>
             <file>file:/C:/wamp64/www/projetos/view/classificacoes/editar-classificacao.php</file>
+            <file>file:/C:/wamp64/www/projetos/view/js/exemplo_1.js</file>
             <file>file:/C:/wamp64/www/projetos/view/titulospagar/listar-titulopagar.php</file>
         </group>
     </open-files>

@@ -44,24 +44,33 @@ class TituloPagarController {
             $this->titulo->setDescricao(isset($_GET["descricao"]) ? $_GET["descricao"] : null);
             $this->titulo->setId_fornecedor(isset($_GET["id_fornecedor"]) ? $_GET["id_fornecedor"] : null);
             $this->titulo->cadastrarTitulo();
-            $this->fornecedor->listarTodos("titulos");
+            $mensagem = "O titulo <strong> " . $this->titulo->getDocumento() . " </strong>foi cadastrado.";
             } catch (Exception $e) {
             echo $e->getMessage();
         }
+        header("Location: ../view/titulospagar/cadastrar-titulopagar.php?status=".$mensagem);
+        
     }
 
     function listarTitulos($acao) {
         try {
-            if($acao == "padrao"){
+                          
                 $linhas = $this->titulo->listarTitulos();
                 session_start();
-                $_SESSION["linhas"] = $linhas;       
-            }
-            elseif ($acao == "apagar") {
-                $linhas = $this->titulo->listarTitulos();
-                session_start();
-                $_SESSION["linhas"] = $linha;
+                $_SESSION["linhas"] = $linhas; 
+                $mensagem=null;
+            
+            if ($acao == "apagar") {
+                
                 $mensagem = "O titulo <strong> " . $this->titulo->getDocumento() . " </strong>foi deletado.";
+            }
+            elseif($acao == "editar") {
+                 $mensagem = "O titulo <strong> " . $this->titulo->getDocumento() . " </strong>foi editado.";
+        
+                
+            }
+            else{
+                
             }
         } catch (Exception $ex) {
             echo $ex->getMessage();
@@ -94,7 +103,7 @@ class TituloPagarController {
             echo $ex->getMessage();
             exit();
         }
-        $this->listarTitulos("padrao");
+        $this->listarTitulos("editar");
     }
 
 }

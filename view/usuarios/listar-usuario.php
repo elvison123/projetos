@@ -84,6 +84,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -105,6 +108,13 @@ if(!isset($_SESSION["nomeusuario"])){
 
 
     <div class="container">
+         <?php if (isset($_GET['status'])&&(!$_GET['status']==null)) { ?>
+                <div class="alert alert-info">
+                    <center><?php echo $_GET['status']; ?></center>
+                </div>
+           
+
+        <?php }; ?>
         <div class="row">
             <div class="col-xs-4">
                 <h1 class="h1">Listar Usuarios</h1>
@@ -132,17 +142,17 @@ if(!isset($_SESSION["nomeusuario"])){
                 </thead>
                 <tbody>
 
-                    <?php if (isset($_SESSION["usuarios"])){foreach ($_SESSION["usuarios"] as $usuario): ?>
+                    <?php if (isset($_SESSION["linhas"])){foreach ($_SESSION["linhas"] as $linha): ?>
                             <tr>
-                                <td><?php echo $usuario["id_usuario"] ?></td>
-                                <td><?php echo $usuario["nome"] ?></td>
-                                <td><?php echo $usuario["email"] ?></td>
-                                <td><?php echo $usuario["login"] ?></td>
-                                <td><?php echo $usuario["cpf"] ?></td>
-                                <td><?php echo $usuario["empresa"] ?></td>
+                                <td><?php echo $linha["id_usuario"] ?></td>
+                                <td><?php echo $linha["nome"] ?></td>
+                                <td><?php echo $linha["email"] ?></td>
+                                <td><?php echo $linha["login"] ?></td>
+                                <td><?php echo $linha["cpf"] ?></td>
+                                <td><?php echo $linha["empresa"] ?></td>
                                 
-                                <td><button class="delete btn btn-danger" data-nome ="<?php echo $usuario["nome"]; ?>" data-id="<?php echo $usuario["id_usuario"]; ?>"data-target="#myModal">Excluir</td>
-                                <td><a class="btn btn-default" href="editar-usuario.php?id_usuario=<?php echo $usuario["id_usuario"] ?>&nome=<?php echo $usuario["nome"] ?>&email=<?php echo $usuario["email"] ?>&login=<?php echo $usuario["login"] ?>&cpf=<?php echo $usuario["cpf"] ?>&empresa=<?php echo $usuario["empresa"] ?>&senha=<?php echo $usuario["senha"] ?>">Editar</a></td>
+                                <td><button class="delete btn btn-danger" data-nome ="<?php echo $linha["nome"]; ?>" data-id="<?php echo $linha["id_usuario"]; ?>"data-target="#myModal">Excluir</td>
+                                <td><a class="btn btn-default" href="editar-usuario.php?id_usuario=<?php echo $linha["id_usuario"] ?>&nome=<?php echo $linha["nome"] ?>&email=<?php echo $linha["email"] ?>&login=<?php echo $linha["login"] ?>&cpf=<?php echo $linha["cpf"] ?>&empresa=<?php echo $linha["empresa"] ?>&senha=<?php echo $linha["senha"] ?>">Editar</a></td>
 
                             </tr>
 

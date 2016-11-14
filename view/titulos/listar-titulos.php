@@ -84,6 +84,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -105,6 +108,13 @@ if(!isset($_SESSION["nomeusuario"])){
 
 
 <div class="container">
+    <?php if (isset($_GET['status'])&&(!$_GET['status']==null)) { ?>
+                <div class="alert alert-info">
+                    <center><?php echo $_GET['status']; ?></center>
+                </div>
+           
+
+        <?php }; ?>
     <div class="row">
         <div class="">
             <h1 class="h1 col-xs-5">Listar Títulos </h1>
@@ -126,8 +136,8 @@ if(!isset($_SESSION["nomeusuario"])){
                         <td><strong>PARCELAS</strong></td>
                         <td><strong>DATA</strong></td>
                         <td><strong>VENCIMENTO</strong></td>
-                        <td class="danger"><strong>DELETAR</strong></td>
-                        <td class="danger"><strong>EDITAR</strong></td>
+                        <td><strong>DELETAR</strong></td>
+                        <td><strong>EDITAR</strong></td>
 
                     </tr>
                 </thead>

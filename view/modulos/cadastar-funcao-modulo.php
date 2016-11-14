@@ -84,6 +84,9 @@ if(!isset($_SESSION["nomeusuario"])){
                 <li role="separator" class="divider"></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=paginafuncao">Cadastrar função</a></li>
                 <li><a href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Listar Funções cadastradas</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="../../view/prioridade/cadastrar-prioridade.php">Cadastrar Prioridade</a></li>
+                <li><a href="../../controller/PrioridadeController.php?acao=buscartodos">Listar Prioridades Cadastradas</a></li>
                 
 
             </ul></li>
@@ -111,7 +114,7 @@ if(!isset($_SESSION["nomeusuario"])){
            
 
         <?php }; ?>
-        <h1>Cadastrar funções do modulo</h1>
+        <h1>Cadastrar funções do Módulo</h1>
         <form action="../../controller/FuncaoModuloController.php" id="formcad" method="get">
             <input type="hidden" value="cadastrarfuncao" name="acao">
             <div class="form-group row">
@@ -137,9 +140,19 @@ if(!isset($_SESSION["nomeusuario"])){
                         <input type="text" name="codigo" id="codigo" placeholder="Preencher com 4 digitos numericos" class="form-control">
                     </div>
             </div>
-            <div class="form-group col-xs-2">
-                <input class="btn btn-default" type="submit" value="Cadastrar">
+            <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-6">
+                <input class="btn btn-success" type="submit" onclick="clicked"id="myBtn" value="Cadastrar">
+                </div>
+                <div class="col-xs-2">
+                    <a class="btn btn-default" href="../../controller/FuncaoModuloController.php?acao=listarfuncoes">Exibir Cadastro</a>
+                </div>
             </div>
+            </form> 
+        
+        
+    </div>
                 <script>
                 $(document).ready(function () {
                     $("#formcad").validate({
@@ -208,7 +221,4 @@ if(!isset($_SESSION["nomeusuario"])){
             
             
             
-        </form> 
         
-        
-    </div>
